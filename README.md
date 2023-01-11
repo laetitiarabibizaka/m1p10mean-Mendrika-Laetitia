@@ -1,1 +1,1 @@
-# m1p10mean-Laetitia-Mendrika
+# m1p10mean-laetitia-mendrika
