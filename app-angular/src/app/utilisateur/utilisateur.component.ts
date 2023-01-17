@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatCardActions } from '@angular/material/card';
-import { MatCard } from '@angular/material/card';
-import { MatCardHeader } from '@angular/material/card';
+import { Router } from '@angular/router';
+import { UtilisateurService } from '../services/utilisateur/utilisateur.service';
 
 @Component({
   selector: 'app-utilisateur',
@@ -16,26 +14,26 @@ export class UtilisateurComponent {
   password: string = '';
   error: string = '';
   constructor(
-  //  private loginService: RestoLoginService,
-    //private router: Router
+    private utilisateurService: UtilisateurService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
   }
   login(): void {
     this.hideLoader = false;
-    // this.loginService.login(this.email, this.password).subscribe(
-    //   (data) => {
-    //     if (data.ok) {
-    //       sessionStorage.setItem("resto-token", data.token);
-    //       window.location.href = `/resto/accueil`;
-    //     } else {
-    //       this.hideLoader = true;
-    //       this.error = data.error;
-    //     }
-    //   }, (error) => {
-    //     this.router.navigate(['/error']);
-    //   }
-    // )
+    this.utilisateurService.login(this.email, this.password).subscribe(
+      (data) => {
+        if (data.ok) {
+          sessionStorage.setItem("resto-token", data.token);
+          window.location.href = `/`;
+        } else {
+          this.hideLoader = true;
+          this.error = data.error;
+        }
+      }, (error) => {
+        this.router.navigate(['/error']);
+      }
+    )
   }
 }

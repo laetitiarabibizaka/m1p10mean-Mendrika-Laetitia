@@ -1,21 +1,21 @@
 <div class="main">
-	<img src="/assets/img/logo-ekaly.png" alt="E-Kaly.com">
+	<img class="logo" src="/assets/img/logo-meca.png" alt="Meca-Repair.com">
 	<mat-card class="login-card">
 		<mat-card-header class="login-header">
-			<mat-card-title>Connexion de restaurant</mat-card-title>
-			<mat-spinner *ngIf="!hideLoader" diameter="30"></mat-spinner>
+			<mat-card-title>Connexion</mat-card-title>
 		</mat-card-header>
-		<mat-divider inset></mat-divider>
+		
+		<mat-spinner *ngIf="!hideLoader" diameter="50"></mat-spinner>
 		<mat-card-content class="login-form">
 			<div class="form-input">
-				<mat-form-field appearance="standard">
+				<mat-form-field >
 					<mat-label>Adresse email</mat-label>
-					<input matInput placeholder="restaurant@exemple.com" [(ngModel)]="email" type="email">
+					<input matInput placeholder="mecarepair@exemple.com" [(ngModel)]="email" type="email">
 					<mat-icon matSuffix>alternate_email</mat-icon>
 				</mat-form-field>
 			</div>
 			<div class="form-input">
-				<mat-form-field appearance="standard">
+				<mat-form-field >
 					<mat-label>Mot de passe</mat-label>
 					<input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
 					<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -24,9 +24,14 @@
 				  </mat-form-field>
 			</div>
 		</mat-card-content>
+		<mat-card-actions>
+			<button mat-raised-button class="login-button" (click)="login()" [disabled]="!hideLoader" [ngClass]="!hideLoader? 'disabled':''">
+				Se Connecter
+			</button>
+			<br/>
+		</mat-card-actions>
 		<small>
-			Votre restaurant n'est pas encore inscrit ?
-			<a [routerLink]="['/resto/signup']" class="redirect">Cliquez ici</a>
+			<a [routerLink]="['/resto/signup']" class="redirect">s`inscrire</a>
 		</small>
 		<small class="error">{{error}}</small>
 	</mat-card>
