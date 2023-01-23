@@ -24,6 +24,8 @@ import { MenubarComponent } from './components/client/menubar/menubar.component'
 import { AccueilComponent } from './components/client/accueil/accueil.component';
 import { NavbarClientComponent } from './components/client/navbar-client/navbar-client.component';
 import { FooterClientComponent } from './components/client/footer-client/footer-client.component';
+import { ListemesreparationComponent } from './components/client/listemesreparation/listemesreparation.component';
+import { ListemesvoitureComponent } from './components/client/listemesvoiture/listemesvoiture.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { FooterClientComponent } from './components/client/footer-client/footer-
     MenubarComponent,
     AccueilComponent,
     NavbarClientComponent,
-    FooterClientComponent
+    FooterClientComponent,
+    ListemesreparationComponent,
+    ListemesvoitureComponent
   ],
   imports: [
     BrowserModule,
