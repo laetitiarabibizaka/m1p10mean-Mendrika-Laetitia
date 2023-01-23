@@ -20,6 +20,7 @@ import { ListehistoriqueComponent } from './pages/listehistorique/listehistoriqu
 import { ListereparationComponent } from './pages/listereparation/listereparation.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SigninComponent } from './pages/signin/signin.component';
+import { AccueilComponent } from './pages/accueil/accueil.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SigninComponent } from './pages/signin/signin.component';
     ListehistoriqueComponent,
     ListereparationComponent,
     NavbarComponent,
-    SigninComponent
+    SigninComponent,
+    AccueilComponent
   ],
   imports: [
     BrowserModule,
