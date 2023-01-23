@@ -35,8 +35,7 @@
               "src/assets/lib/owlcarousel/assets/owl.carousel.min.css",
               "src/assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css",
               "src/assets/css/bootstrap.min.css",
-              "src/assets/css/style.css",
-              "src/assets/css/styles.css"
+              "src/assets/css/style.css"
             ],
             "scripts": [
               "src/assets/lib/chart/chart.min.js",
@@ -61,7 +60,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "5mb"
+                  "maximumError": "4kb"
                 }
               ],
               "outputHashing": "all"
