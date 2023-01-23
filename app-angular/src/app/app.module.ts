@@ -19,6 +19,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ListehistoriqueComponent } from './pages/listehistorique/listehistorique.component';
 import { ListereparationComponent } from './pages/listereparation/listereparation.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SigninComponent } from './pages/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FooterComponent,
     ListehistoriqueComponent,
     ListereparationComponent,
-    NavbarComponent
+    NavbarComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,

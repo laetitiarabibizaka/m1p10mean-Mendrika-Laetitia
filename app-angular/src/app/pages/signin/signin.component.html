@@ -1,0 +1,68 @@
+<div class="main">
+	<img class="logo" src="/assets/img/logo-meca.png" alt="Meca-Repair.com">
+	<mat-card class="signin-card">
+		<mat-card-header class="signin-header">
+			<mat-card-title>Inscription</mat-card-title>
+		</mat-card-header>
+		
+		<mat-spinner *ngIf="!hideLoader" diameter="50"></mat-spinner>
+		<mat-card-content class="signin-form">
+			<div class="form-input">
+				<mat-form-field >
+					<mat-label>Nom</mat-label>
+					<input matInput placeholder="Nom" [(ngModel)]="nom" type="text">
+				</mat-form-field>
+			</div>
+			<div class="form-input">
+				<mat-form-field >
+					<mat-label>Prenom</mat-label>
+					<input matInput placeholder="Prenom" [(ngModel)]="prenom" type="text">
+				</mat-form-field>
+			</div>
+			<div class="form-input">
+				<mat-form-field >
+					<mat-label>Date de naissance</mat-label>
+					<input matInput placeholder="dd/MM/yyyy" [(ngModel)]="dateNaissance" type="text">				
+				</mat-form-field>
+			</div>
+			<div class="form-input">
+				<mat-form-field >
+					<mat-label>Contact</mat-label>
+					<input matInput placeholder="Contact" [(ngModel)]="contact" type="text">
+				</mat-form-field>
+			</div>
+			<div class="form-input">
+				<mat-form-field >
+					<mat-label>Sexe</mat-label>
+					<input matInput placeholder="sexe" [(ngModel)]="sexe" type="text">
+				</mat-form-field>
+			</div>
+            <div class="form-input">
+				<mat-form-field >
+					<mat-label>Adresse email</mat-label>
+					<input matInput placeholder="mecarepair@exemple.com" [(ngModel)]="login" type="email">
+					<mat-icon matSuffix>alternate_email</mat-icon>
+				</mat-form-field>
+			</div>
+			<div class="form-input">
+				<mat-form-field >
+					<mat-label>Mot de passe</mat-label>
+					<input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="mdp">
+					<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+					  <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+					</button>
+				  </mat-form-field>
+			</div>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-raised-button class="signin-button" (click)="signin()" [disabled]="!hideLoader" [ngClass]="!hideLoader? 'disabled':''">
+				Inscription
+			</button>
+			<br/>
+		</mat-card-actions>
+		<small>
+			<a [routerLink]="['/login']" class="redirect">se connecter</a>
+		</small>
+		<small class="error">{{error}}</small>
+	</mat-card>
+</div>
