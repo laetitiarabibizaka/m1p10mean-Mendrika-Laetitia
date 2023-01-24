@@ -30,9 +30,10 @@ export class UtilisateurComponent {
         } else {
           this.hideLoader = true;
           this.error = data.error;
+          window.location.href = '/accueil'
         }
       }, (error) => {
-        this.router.navigate(['/error']);
+        this.router.navigate(['/accueil']);
       }
     )
   }

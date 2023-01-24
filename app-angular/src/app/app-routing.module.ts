@@ -12,7 +12,7 @@ import { SigninComponent } from './pages/signin/signin.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 
 const routes: Routes = [
-  { path: 'login', component: UtilisateurComponent },
+  { path: '', component: UtilisateurComponent },
   { path: 'listereparation', component: ListereparationComponent },
   { path: 'signin', component: SigninComponent },
   {
