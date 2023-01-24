@@ -29,6 +29,8 @@ import { ListemesreparationComponent } from './pages/client/listemesreparation/l
 import { ListemesvoitureComponent } from './pages/client/listemesvoiture/listemesvoiture.component';
 import { ProfileComponent } from './pages/client/profile/profile.component';
 import { AjoutvehiculeComponent } from './pages/client/ajoutvehicule/ajoutvehicule.component';
+import { ImageComponent } from './components/client/image/image.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { AjoutvehiculeComponent } from './pages/client/ajoutvehicule/ajoutvehicu
     ListemesvoitureComponent,
     ClientComponent,
     ProfileComponent,
-    AjoutvehiculeComponent
+    AjoutvehiculeComponent,
+    ImageComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { AjoutvehiculeComponent } from './pages/client/ajoutvehicule/ajoutvehicu
     MatInputModule,
     MatIconModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxDropzoneModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
