@@ -21,11 +21,14 @@ import { ListereparationComponent } from './pages/listereparation/listereparatio
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { MenubarComponent } from './components/client/menubar/menubar.component';
-import { AccueilComponent } from './components/client/accueil/accueil.component';
 import { NavbarClientComponent } from './components/client/navbar-client/navbar-client.component';
 import { FooterClientComponent } from './components/client/footer-client/footer-client.component';
-import { ListemesreparationComponent } from './components/client/listemesreparation/listemesreparation.component';
-import { ListemesvoitureComponent } from './components/client/listemesvoiture/listemesvoiture.component';
+import { ClientComponent } from './pages/client/client.component';
+import { AccueilComponent } from './pages/client/accueil/accueil.component';
+import { ListemesreparationComponent } from './pages/client/listemesreparation/listemesreparation.component';
+import { ListemesvoitureComponent } from './pages/client/listemesvoiture/listemesvoiture.component';
+import { ProfileComponent } from './pages/client/profile/profile.component';
+import { AjoutvehiculeComponent } from './pages/client/ajoutvehicule/ajoutvehicule.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,10 @@ import { ListemesvoitureComponent } from './components/client/listemesvoiture/li
     NavbarClientComponent,
     FooterClientComponent,
     ListemesreparationComponent,
-    ListemesvoitureComponent
+    ListemesvoitureComponent,
+    ClientComponent,
+    ProfileComponent,
+    AjoutvehiculeComponent
   ],
   imports: [
     BrowserModule,

@@ -39,9 +39,9 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Vehicule</h1>
-                        <a [routerLink]="['/mesreparations']"  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i>Mes Reparations</a>
+                        <h1 class="h3 mb-0 text-gray-800">Saisie Vehicule</h1>
+                        <a [routerLink]="['/mesvoitures']"  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i>Mes Voitures</a>
                     </div>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -50,26 +50,21 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Numero</th>
-                                            <th>Marque</th>
-                                            <th>Model</th>
-                                            <th></th>
+                                            <th>Date Depot</th>
+                                            <th>Date Sortie</th>
+                                            <th>Voiture</th>
+                                            <th>Date Reception</th>
+                                            <th>Temps restants</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Numero</th>
-                                            <th>Marque</th>
-                                            <th>Model</th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         <tr>
-                                            <td>BT-50</td>
-                                            <td>Mazda</td>
-                                            <td>Offroad</td>
-                                            <th><a [routerLink]="['/voir']">voir</a></th>
+                                            <td>12/01/2023</td>
+                                            <td>12/01/2023</td>
+                                            <td>Mazda BT50</td>
+                                            <th>12/01/2023</th>
+                                            <th>Terminer</th>
                                         </tr>
                                     </tbody>
                                 </table>
