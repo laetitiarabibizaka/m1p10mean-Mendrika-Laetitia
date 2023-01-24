@@ -18,4 +18,8 @@ export class AjoutvehiculeComponent {
 
   ngOnInit(): void {
   }
+
+  ajoutvehicule():void{
+
+  }
 }
