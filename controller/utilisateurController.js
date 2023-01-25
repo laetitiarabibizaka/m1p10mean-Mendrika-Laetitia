@@ -46,7 +46,8 @@ router.post('/traitementLogin', (req, res) => {
         }else{
             var isValidate=bcrypt.compareSync(req.body.mdp,docs.mdp);
             if(isValidate){
-                res.status(200).json({message: 'ok',data: docs});
+                docs.mdp=null;
+                res.status(200).json({message: 'ok',data: docs,ok: true});
             }else{
                 res.status(400).json({statusText: 'Bad request',message: 'Login ou mot de passe erroné'});
             }

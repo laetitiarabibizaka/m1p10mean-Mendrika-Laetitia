@@ -25,15 +25,15 @@ export class UtilisateurComponent {
     this.utilisateurService.login(this.email, this.password).subscribe(
       (data) => {
         if (data.ok) {
-          sessionStorage.setItem("resto-token", data.token);
-          window.location.href = `/`;
+          sessionStorage.setItem("sessionUser", data.data);
+          window.location.href = `/accueil`;
         } else {
           this.hideLoader = true;
           this.error = data.error;
-          window.location.href = '/accueil'
+          window.location.href = '/'
         }
       }, (error) => {
-        this.router.navigate(['/accueil']);
+        this.router.navigate(['/']);
       }
     )
   }

@@ -11,10 +11,9 @@ export class UtilisateurService {
 	) { }
 	login(email: string, password: string): Observable<any> {
 		const data:any = {
-			email:email,
-			password:password
+			login:email,
+			mdp:password
 		};
-		console.log(`${environment.baseUrl}/login`)
-		return this.http.post(`${environment.baseUrl}/login`,data,{});
+		return this.http.post(`${environment.baseUrl}client/traitementLogin`,data,{});
 	}
 }
