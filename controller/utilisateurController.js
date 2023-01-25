@@ -37,21 +37,15 @@ router.post('/createUser',(req,res)=>{
 });
 
 router.post('/traitementLogin', (req, res) => {
-    var adm = new Utilisateur({
-        login: req.body.login,
-        mdp: req.body.mdp
-    });
+
     Utilisateur.find({ login: req.body.login, mdp: req.body.mdp }, function (err, docs) {
         if (err){
             console.log(err);
-            res.send(err);
+            res.status(400).json({message: 'Login ou  mot de passe erroné',error: 'Login ou  mot de passe erroné'})
         }
         else{
-            if(docs.length == 1) {
-                res.send(docs[0])
-            } else {
-                res.send(docs[0])
-            }
+            docs[0].mdp=null;
+            res.status(200).json({data: docs[0]})
         }
     });
 });
