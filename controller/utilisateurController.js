@@ -39,15 +39,17 @@ router.post('/createUser',(req,res)=>{
 });
 
 router.post('/traitementLogin', (req, res) => {
-
-    Utilisateur.find({ login: req.body.login, mdp: req.body.mdp }, function (err, docs) {
-        if (err){
+    Utilisateur.findOne({login: req.body.login}, function(err,docs){
+        if(err || docs==null){
             console.log(err);
-            res.status(400).json({message: 'Login ou  mot de passe erroné',error: 'Login ou  mot de passe erroné'})
-        }
-        else{
-            docs[0].mdp=null;
-            res.status(200).json({data: docs[0]})
+            res.status(400).json({statusText: 'Bad request',message: 'Login inexistant'});
+        }else{
+            var isValidate=bcrypt.compareSync(req.body.mdp,docs.mdp);
+            if(isValidate){
+                res.status(200).json({message: 'ok',data: docs});
+            }else{
+                res.status(400).json({statusText: 'Bad request',message: 'Login ou mot de passe erroné'});
+            }
         }
     });
 });
