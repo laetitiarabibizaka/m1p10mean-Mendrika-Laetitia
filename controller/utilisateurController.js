@@ -5,6 +5,8 @@ var router=express.Router();
 var ObjectId = require('mongoose').Types.ObjectId;
 
 var {Utilisateur} = require('../models/Utilisateur');
+var {ReparationVoiture} = require('../models/ReparationVoiture');
+var {Voiture} = require('../models/Voiture');
 
 
 router.get('/',(req,res)=>{
@@ -46,6 +48,65 @@ router.post('/traitementLogin', (req, res) => {
         else{
             docs[0].mdp=null;
             res.status(200).json({data: docs[0]})
+        }
+    });
+});
+
+router.get('/voitures',(req,res)=>{
+    ReparationVoiture.find({id: req.body.idUser}, function(err,docs){
+        if(err){
+            console.log(err);
+            res.status(400).json({message: err.message,error: err.message})
+        }else{
+            res.status(200).json({data: docs})
+        }
+    });
+});
+
+router.post('/ajoutVoiture',(req,res) => {
+    ReparationVoiture.find({id: req.body.idUser}, function(err,docs){
+        if(err){
+            console.log(err);
+            res.status(400).json({message: err.message,error: err.message})
+        }else{
+            var voiture = new Voiture({
+                numero: req.body.voiture.numero,
+                marque : req.body.voiture.marque,
+                modele: req.body.voiture.modele,
+                listeDepot: []
+            });
+
+            voiture.save().then(()=>{
+                if(docs.length>0){
+                    console.log(docs);
+                    docs[0].listeVoiture.push(voiture);
+                    docs[0].save();
+                    res.status(200).json({message: "Voiture ajoutée avec succes", data: docs[0]})
+                }else{
+                    var repVoiture=new ReparationVoiture({
+                        id: req.body.idUser,
+                        nom: req.body.nom,
+                        prenom: req.body.prenom,
+                        contact: req.body.contact,
+                        login: req.body.login,
+                        listeVoiture: [voiture]
+                    });
+    
+                    repVoiture.save().then(()=>{
+                        res.status(200).json({message: "Voiture ajoutée avec succes", data: repVoiture})
+                    })
+                    .catch((error)=>{
+                        let errMsg=error.message;
+                        console.log(error);
+                        res.status(400).json({statusText: 'Bad request',message: errMsg});
+                    })
+                }
+            })
+            .catch((error)=>{
+                let errMsg=error.message;
+                console.log(error);
+                res.status(400).json({statusText: 'Bad request',message: errMsg});
+            })
         }
     });
 });
