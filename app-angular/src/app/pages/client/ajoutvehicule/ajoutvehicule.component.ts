@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AjoutevehiculeService } from 'src/app/services/ajoutevehicule.service';
+import { Utilisateur } from 'src/app/shared/utilisateur/utilisateur.model';
 
 @Component({
   selector: 'app-ajoutvehicule',
@@ -45,6 +46,14 @@ export class AjoutvehiculeComponent {
 		});
 	}
   ajoutevehicule():void{
-      console.log("data----",this.numero,this.marque, this.files )
+    console.log("data----",this.numero,this.marque, this.files );
+    var user=JSON.stringify(sessionStorage.getItem("sessionUser"));
+    let utilisateur: Utilisateur = <Utilisateur>JSON.parse(sessionStorage.getItem("sessionUser"));
+    this.ajouteservice.ajouterVehicule(this.numero,this.marque,this.model,utilisateur).subscribe((res)=>{
+      this.router.navigate(['/mesvoitures']);
+    },(error) => {
+      console.log(error);
+        this.router.navigate(['/']);
+      });
   }
 }

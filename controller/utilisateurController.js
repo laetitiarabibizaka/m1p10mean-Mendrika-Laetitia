@@ -68,16 +68,17 @@ router.get('/voitures/:iduser',(req,res)=>{
 });
 
 router.post('/ajoutVoiture',(req,res) => {
-    ReparationVoiture.find({id: req.body.idUser}, function(err,docs){
+    ReparationVoiture.find({login: req.body.login}, function(err,docs){
         if(err){
             console.log(err);
             res.status(400).json({message: err.message,error: err.message})
         }else{
             var voiture = new Voiture({
-                numero: req.body.voiture.numero,
-                marque : req.body.voiture.marque,
-                modele: req.body.voiture.modele,
-                listeDepot: []
+                numero: req.body.numero,
+                marque : req.body.marque,
+                modele: req.body.modele,
+                listeDepot: [],
+                listePhoto: []
             });
 
             voiture.save().then(()=>{

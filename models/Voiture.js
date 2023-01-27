@@ -5,7 +5,8 @@ var Voiture = mongoose.model('Voiture',{
     numero : {type: String},
     marque: {type: String},
     modele: {type: String},
-    listeDepot: {type: Array}
+    listeDepot: {type: Array},
+    listePhoto: {type: Array}
 });
 
 module.exports={Voiture};
