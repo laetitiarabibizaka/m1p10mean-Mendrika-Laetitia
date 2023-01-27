@@ -22,3 +22,5 @@ router.post('/traitementLogin', (req, res) => {
         }
     });
 });
+
+module.exports = router;
