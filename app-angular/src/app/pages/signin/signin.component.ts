@@ -37,9 +37,9 @@ export class SigninComponent {
           this.hideLoader = true;
           this.error = data.error;
           window.location.href = '/signin'
-        }(error)=>{
-          this.router.navigate(['/signin']);
         }
+      },(error)=>{
+        this.router.navigate(['/signin']);
       }
     )
   }

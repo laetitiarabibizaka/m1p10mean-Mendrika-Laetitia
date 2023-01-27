@@ -7,17 +7,21 @@
 		
 		<mat-spinner *ngIf="!hideLoader" diameter="50"></mat-spinner>
 		<mat-card-content class="signin-form">
-			<div class="form-input">
-				<mat-form-field >
-					<mat-label>Nom</mat-label>
-					<input matInput placeholder="Nom" [(ngModel)]="nom" type="text">
-				</mat-form-field>
-			</div>
-			<div class="form-input">
-				<mat-form-field >
-					<mat-label>Prenom</mat-label>
-					<input matInput placeholder="Prenom" [(ngModel)]="prenom" type="text">
-				</mat-form-field>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-input">
+						<mat-form-field >
+							<mat-label>Nom</mat-label>
+							<input matInput placeholder="Nom" [(ngModel)]="nom" type="text">
+						</mat-form-field>
+					</div>
+					<div class="form-input">
+						<mat-form-field >
+							<mat-label>Prenom</mat-label>
+							<input matInput placeholder="Prenom" [(ngModel)]="prenom" type="text">
+						</mat-form-field>
+					</div>
+				</div>
 			</div>
 			<div class="form-input">
 				<mat-form-field >
@@ -41,6 +45,7 @@
 					</button>
 				  </mat-form-field>
 			</div>
+		
 		</mat-card-content>
 		<mat-card-actions>
 			<button mat-raised-button class="signin-button" (click)="signin()" [disabled]="!hideLoader" [ngClass]="!hideLoader? 'disabled':''">
