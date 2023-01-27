@@ -67,6 +67,23 @@ router.get('/voitures/:iduser',(req,res)=>{
     });
 });
 
+router.get('/recherchevoiture/:iduser/:matricule',(req,res)=>{
+    const varUnwind = { $unwind: "$listeVoiture" };
+    const varMatch = {
+        $match: {
+            "listeVoiture.numero": req.params.matricule,
+        },
+    };
+    ReparationVoiture.aggregate([varUnwind, varMatch], function(err,docs){
+        if(err){
+            console.log(err);
+            res.status(400).json({message: err.message,error: err.message})
+        }else{
+            res.status(200).json({data: docs})
+        }
+    });
+});
+
 router.post('/ajoutVoiture',(req,res) => {
     ReparationVoiture.find({login: req.body.login}, function(err,docs){
         if(err){
