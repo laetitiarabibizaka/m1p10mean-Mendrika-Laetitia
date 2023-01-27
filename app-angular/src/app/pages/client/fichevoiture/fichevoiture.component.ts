@@ -14,6 +14,8 @@ export class FichevoitureComponent {
   marque: string = '';
   model: string = '';
   proprietaire: string = '';
+  datedepot: string = '';
+  commentaire: string = '';
   constructor(
     private activatedRoute: ActivatedRoute,
     private voitureService : VoitureService
@@ -24,7 +26,6 @@ export class FichevoitureComponent {
     this.get_info()
   }
   get_info() {
-    console.log("INNNDROOOOOO ")
     this.activatedRoute.params.subscribe(params => {
       let numero = params['numero'];
       console.log("indroooo ",numero);
@@ -42,7 +43,8 @@ export class FichevoitureComponent {
     });
   }
   deposerVoiture() {
-
+    console.log("Commentaire", this.commentaire)
+    console.log("Date ", this.datedepot)
   }
 
   recuperation() {
