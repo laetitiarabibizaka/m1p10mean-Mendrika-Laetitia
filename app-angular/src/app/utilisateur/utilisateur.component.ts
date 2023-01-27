@@ -25,7 +25,7 @@ export class UtilisateurComponent {
     this.utilisateurService.login(this.email, this.password).subscribe(
       (data) => {
         if (data.ok) {
-          sessionStorage.setItem("sessionUser", data.data);
+          sessionStorage.setItem("sessionUser", JSON.stringify(data.data));
           window.location.href = `/accueil`;
         } else {
           this.hideLoader = true;

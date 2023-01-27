@@ -40,7 +40,7 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Vehicule</h1>
                         <a [routerLink]="['/addvehicule']"  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i>Ajouter voiture</a>
+                                class="fas fa-download fa-sm text-white-50"></i>Ajouter une voiture</a>
                     </div>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -51,15 +51,15 @@
                                         <tr>
                                             <th>Numero</th>
                                             <th>Marque</th>
-                                            <th>Model</th>
+                                            <th>Modele</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>BT-50</td>
-                                            <td>Mazda</td>
-                                            <td>Offroad</td>
+                                        <tr *ngFor="let voiture of voitureService.listeVoitures">
+                                            <td>{{voiture.numero}}</td>
+                                            <td>{{voiture.marque}}</td>
+                                            <td>{{voiture.modele}}</td>
                                             <th><a [routerLink]="['/voir']">voir</a></th>
                                         </tr>
                                     </tbody>

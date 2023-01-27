@@ -55,8 +55,9 @@ router.post('/traitementLogin', (req, res) => {
     });
 });
 
-router.get('/voitures',(req,res)=>{
-    ReparationVoiture.find({id: req.body.idUser}, function(err,docs){
+router.get('/voitures/:iduser',(req,res)=>{
+    console.log(req.params.iduser);
+    ReparationVoiture.find({login: req.params.iduser}, function(err,docs){
         if(err){
             console.log(err);
             res.status(400).json({message: err.message,error: err.message})
@@ -113,5 +114,61 @@ router.post('/ajoutVoiture',(req,res) => {
         }
     });
 });
+
+/*router.post('/envoieMail', (req, res) => {
+    var adm = new Utilisateur({
+        email: req.body.email,
+        mdp: req.body.mdp
+    });
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: "anitatantely@gmail.com", // generated ethereal user
+          pass: "xzdsopensecdlmtt", // generated ethereal password
+        },
+        tls: {
+        rejectUnauthorized: false
+        }
+    });
+let info = transporter.sendMail({
+        from: "anitatantely@gmail.com", // sender address
+        to:  req.body.email, // list of receivers
+        subject: "Confirmation de compte ", // Subject line
+        //text: "Veuillez cliquez sur le lien pour vous connecter SVP : http://localhost:4200/navbar ", // plain text body
+        //html: "Veuillez cliquez sur le lien pour vous connecter SVP : http://localhost:4200/navbar ", // html body
+        html: "eto n html no atao "
+ });
+    res.send('{"msg": "mail envoyer"}');
+});
+
+router.put('/deposerReparation/:id',(req,res)=>{
+    //console.log({"listeVoiture.id": req.params.id, "id": req.body.idUser});
+    const filter = {"listeVoiture.id": req.params.id, "id": req.body.idUser};
+    const updateDoc = {
+        $push:{
+            "listeVoiture.$.listeDepot":{
+                date: req.body.date,
+                commentaire: req.body.commentaire,
+                respAtelier: null,
+                dateReception: null,
+                listeRep: [],
+                dateSortie: null,
+                dateRecuperation: null,
+                facture: []
+            }
+        },
+    };
+    ReparationVoiture.updateOne(filter,updateDoc,function(err,docs){
+        if(err){
+            console.log(err);
+            res.status(400).json({statusText: 'Bad request',message: err.message});
+        }else{
+            console.log(docs);
+            res.status(200).json({message: 'Deposition reussie',data: docs});
+        }
+    });
+});*/
 
 module.exports = router;
