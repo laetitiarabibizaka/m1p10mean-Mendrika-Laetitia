@@ -48,7 +48,7 @@ export class AjoutvehiculeComponent {
   ajoutevehicule():void{
     console.log("data----",this.numero,this.marque, this.files );
     var user=JSON.stringify(sessionStorage.getItem("sessionUser"));
-    let utilisateur: Utilisateur = <Utilisateur>JSON.parse(sessionStorage.getItem("sessionUser"));
+    let utilisateur: Utilisateur = <Utilisateur>JSON.parse(sessionStorage.getItem("sessionUser") as any);
     this.ajouteservice.ajouterVehicule(this.numero,this.marque,this.model,utilisateur).subscribe((res)=>{
       this.router.navigate(['/mesvoitures']);
     },(error) => {

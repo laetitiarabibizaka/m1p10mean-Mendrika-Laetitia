@@ -67,6 +67,18 @@ router.get('/voitures/:iduser',(req,res)=>{
     });
 });
 
+router.get('/fichevoiture/:matricule',(req,res)=>{
+    console.log(req.params.matricule);
+    Voiture.find({numero: req.params.matricule}, function(err,docs){
+        if(err){
+            console.log(err);
+            res.status(400).json({message: err.message,error: err.message})
+        }else{
+            res.status(200).json({data: docs})
+        }
+    });
+});
+
 router.get('/recherchevoiture/:iduser/:matricule',(req,res)=>{
     const varUnwind = { $unwind: "$listeVoiture" };
     const varMatch = {

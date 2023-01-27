@@ -31,6 +31,7 @@ import { ProfileComponent } from './pages/client/profile/profile.component';
 import { AjoutvehiculeComponent } from './pages/client/ajoutvehicule/ajoutvehicule.component';
 import { ImageComponent } from './components/client/image/image.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { FichevoitureComponent } from './pages/client/fichevoiture/fichevoiture.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     ClientComponent,
     ProfileComponent,
     AjoutvehiculeComponent,
-    ImageComponent
+    ImageComponent,
+    FichevoitureComponent
   ],
   imports: [
     BrowserModule,

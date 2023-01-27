@@ -33,6 +33,8 @@ export class UtilisateurComponent {
           window.location.href = '/'
         }
       }, (error) => {
+        this.hideLoader= true
+        this.error = "Votre email ou mot de passe n'est pas valider";
         this.router.navigate(['/']);
       }
     )

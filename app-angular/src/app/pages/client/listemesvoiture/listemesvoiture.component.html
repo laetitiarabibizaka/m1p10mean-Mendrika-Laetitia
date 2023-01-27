@@ -49,18 +49,20 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th style="width:80px;background-color: rgb(237, 243, 230);">Repair</th>
                                             <th>Numero</th>
                                             <th>Marque</th>
                                             <th>Modele</th>
-                                            <th></th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let voiture of voitureService.listeVoitures">
+                                            <th style="display:flex;justify-content:center"><a [routerLink]="['/fiche/',voiture.numero]"><i class="fas fa-fw fa-wrench"></i></a></th>
                                             <td>{{voiture.numero}}</td>
                                             <td>{{voiture.marque}}</td>
-                                            <td>{{voiture.modele}}</td>
-                                            <th><a [routerLink]="['/voir']">voir</a></th>
+                                            <td>{{voiture.modele}}</td>  
+                                            <td><a [routerLink]="['/voir']"><i class="fas fa fa-eye"></i></a></td>                                       
                                         </tr>
                                     </tbody>
                                 </table>

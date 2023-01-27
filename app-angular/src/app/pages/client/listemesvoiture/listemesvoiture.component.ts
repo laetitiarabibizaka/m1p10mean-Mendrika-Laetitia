@@ -22,9 +22,9 @@ export class ListemesvoitureComponent implements OnInit{
   }
 
   getListeVoiture() {
-    var user = JSON.parse(sessionStorage.getItem("sessionUser"));
+    var user = JSON.parse(sessionStorage.getItem("sessionUser") as any);
     var data=user.login;
-    this.voitureService.getListeVoiture(data).subscribe((res)=>{
+    this.voitureService.getListeVoiture(data).subscribe((res:any)=>{
       if(res) {
         this.voitureService.listeVoitures = [];
         var repV = res['data'] as ReparationVoiture[];

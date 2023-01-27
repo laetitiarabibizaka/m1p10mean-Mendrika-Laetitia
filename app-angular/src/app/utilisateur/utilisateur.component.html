@@ -5,7 +5,7 @@
 			<mat-card-title>Connexion</mat-card-title>
 		</mat-card-header>
 		
-		<mat-spinner *ngIf="!hideLoader" diameter="50"></mat-spinner>
+		<mat-spinner *ngIf="!hideLoader" diameter="30"></mat-spinner>
 		<mat-card-content class="login-form">
 			<div class="form-input">
 				<mat-form-field >
@@ -24,6 +24,7 @@
 				  </mat-form-field>
 			</div>
 		</mat-card-content>
+		<small class="error">{{error}}</small>
 		<mat-card-actions>
 			<button mat-raised-button class="login-button" (click)="login()" [disabled]="!hideLoader" [ngClass]="!hideLoader? 'disabled':''">
 				Se Connecter
@@ -33,6 +34,6 @@
 		<small>
 			<a [routerLink]="['/signin']" class="redirect">s`inscrire</a>
 		</small>
-		<small class="error">{{error}}</small>
+		
 	</mat-card>
 </div>

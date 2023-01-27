@@ -1,6 +1,6 @@
 export class Voiture {
-    id: String;
-    numero: String;
-    marque: String;
-    modele: String;
+    id: string = '';
+    numero: string = '';
+    marque: string = '';
+    modele: string = '';
 }
