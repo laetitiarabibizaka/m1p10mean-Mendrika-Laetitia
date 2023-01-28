@@ -43,17 +43,14 @@
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Email Address..." [(ngModel)]="email">
+                                            <input [(ngModel)]="email" [ngModelOptions]="{standalone:true}" type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email Address..." >
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="password" placeholder="Mot de passe" [(ngModel)]="password">
+                                            <input [(ngModel)]="password" [ngModelOptions]="{standalone:true}" type="password" class="form-control form-control-user" id="password" placeholder="Mot de passe" >
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control  text-center">
-                                                <label class="alert alert-danger" >{{error}}</label>
+                                                <label class="" >{{error}}</label>
                                             </div>
                                         </div>
                                         <a (click)="login()" class="btn btn-primary btn-user btn-block">
