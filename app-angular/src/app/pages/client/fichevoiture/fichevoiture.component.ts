@@ -45,6 +45,20 @@ export class FichevoitureComponent {
   deposerVoiture() {
     console.log("Commentaire", this.commentaire)
     console.log("Date ", this.datedepot)
+    var user=JSON.parse(sessionStorage.getItem("sessionUser"));
+    const data = {
+      login: user.login,
+      numero: this.numero,
+      date: this.datedepot,
+      commentaire: this.commentaire
+    };
+    this.voitureService.deposerVoiture(data).subscribe((res:any)=>{
+      if(res){
+        console.log(res);
+      }else{
+        //alert("Erreur");
+      }
+    });
   }
 
   recuperation() {
