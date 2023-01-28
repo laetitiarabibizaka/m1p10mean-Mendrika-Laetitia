@@ -10,8 +10,8 @@ import { UtilisateurService } from '../services/utilisateur/utilisateur.service'
 export class UtilisateurComponent {
   hideLoader: boolean = true;
   hide: boolean = true;
-  email: string = '';
-  password: string = '';
+  email: string = 'randrialita@gmail.com';
+  password: string = 'mdp123';
   error: string = '';
   constructor(
     private utilisateurService: UtilisateurService,
