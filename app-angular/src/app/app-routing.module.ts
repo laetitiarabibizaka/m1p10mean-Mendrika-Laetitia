@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ImageComponent } from './components/client/image/image.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './pages/atelier/login/login.component';
+import { ReparationEncoursComponent } from './pages/atelier/reparation-encours/reparation-encours.component';
 import { AccueilComponent } from './pages/client/accueil/accueil.component';
 import { AjoutvehiculeComponent } from './pages/client/ajoutvehicule/ajoutvehicule.component';
 import { ClientComponent } from './pages/client/client.component';
@@ -28,6 +30,8 @@ const routes: Routes = [
   { path: 'addvehicule', component: AjoutvehiculeComponent},
   { path: 'image', component: ImageComponent},
   { path: 'fiche/:numero', component: FichevoitureComponent},
+  { path: 'atelier/reparation', component : ReparationEncoursComponent},
+  { path: 'atelier/login', component : LoginComponent}
 ];
 
 @NgModule({

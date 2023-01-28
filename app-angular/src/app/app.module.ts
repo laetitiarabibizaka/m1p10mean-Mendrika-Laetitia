@@ -32,6 +32,9 @@ import { AjoutvehiculeComponent } from './pages/client/ajoutvehicule/ajoutvehicu
 import { ImageComponent } from './components/client/image/image.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { FichevoitureComponent } from './pages/client/fichevoiture/fichevoiture.component';
+import { NavbarAtelierComponent } from './components/atelier/navbar-atelier/navbar-atelier.component';
+import { ReparationEncoursComponent } from './pages/atelier/reparation-encours/reparation-encours.component';
+import { LoginComponent } from './pages/atelier/login/login.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,10 @@ import { FichevoitureComponent } from './pages/client/fichevoiture/fichevoiture.
     ProfileComponent,
     AjoutvehiculeComponent,
     ImageComponent,
-    FichevoitureComponent
+    FichevoitureComponent,
+    NavbarAtelierComponent,
+    ReparationEncoursComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
