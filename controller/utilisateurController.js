@@ -171,11 +171,9 @@ let info = transporter.sendMail({
         html: "eto n html no atao "
  });
     res.send('{"msg": "mail envoyer"}');
-});
+});*/
 
-router.put('/deposerReparation/:id',(req,res)=>{
-    //console.log({"listeVoiture.id": req.params.id, "id": req.body.idUser});
-    const filter = {"listeVoiture.id": req.params.id, "id": req.body.idUser};
+router.put('/deposerReparation/',(req,res)=>{
     const updateDoc = {
         $push:{
             "listeVoiture.$.listeDepot":{
@@ -186,11 +184,13 @@ router.put('/deposerReparation/:id',(req,res)=>{
                 listeRep: [],
                 dateSortie: null,
                 dateRecuperation: null,
-                facture: []
+                facture: null,
+                etat: 1
             }
         },
     };
-    ReparationVoiture.updateOne(filter,updateDoc,function(err,docs){
+
+    ReparationVoiture.updateOne({"listeVoiture.numero": req.body.numero, "login": req.body.login},updateDoc,function(err,docs){
         if(err){
             console.log(err);
             res.status(400).json({statusText: 'Bad request',message: err.message});
@@ -199,6 +199,6 @@ router.put('/deposerReparation/:id',(req,res)=>{
             res.status(200).json({message: 'Deposition reussie',data: docs});
         }
     });
-});*/
+});
 
 module.exports = router;
