@@ -16,9 +16,11 @@ export class FichevoitureComponent {
   proprietaire: string = '';
   datedepot: string = '';
   commentaire: string = '';
+  error: String = '';
   constructor(
     private activatedRoute: ActivatedRoute,
-    private voitureService : VoitureService
+    private voitureService : VoitureService,
+    private router: Router
   ) {
     this.get_info()
   }
@@ -55,7 +57,9 @@ export class FichevoitureComponent {
     this.voitureService.deposerVoiture(data).subscribe((res:any)=>{
       if(res){
         console.log(res);
+        this.router.navigate(['/mesreparations']);
       }else{
+        this.error = 'Erreur dans la déposition de voiture';
         //alert("Erreur");
       }
     });
