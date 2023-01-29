@@ -141,4 +141,33 @@ router.put('/terminerReparation',(req,res)=>{
     );
 });
 
+//pour termnier 3, receptionner 4, valider bon de sortie 5
+router.put('/changerEtatDeposition',(req,res)=>{
+    var data=ReparationVoiture.findOneAndUpdate(
+        {
+            "listeVoiture.numero" : req.body.numero,
+            "listeVoiture.listeDepot.date": new Date(req.body.dateDepot),
+        },
+        {
+            $set:{
+                "listeVoiture.$[elem].listeDepot.$[elem2].etat": Number(req.body.etat)
+            },
+        },
+        {
+            arrayFilters:[
+                {"elem.numero": req.body.numero},
+                {"elem2.date": new Date(req.body.dateDepot)},
+            ],
+        },function(err,docs){
+            if(err){
+                console.log(err);
+                res.status(400).json({statusText: 'Bad request',message: err.message});
+            }else{
+                console.log(docs);
+                res.status(200).json({message: 'Operation effectuée avec succes',data: docs});
+            }
+        }
+    );
+});
+
 module.exports = router;
