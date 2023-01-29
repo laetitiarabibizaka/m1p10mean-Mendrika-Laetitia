@@ -111,4 +111,34 @@ router.put('/receptionDepot',(req,res)=>{
     );
 });
 
+router.put('/terminerReparation',(req,res)=>{
+    var data=ReparationVoiture.findOneAndUpdate(
+        {
+            "listeVoiture.numero" : req.body.numero,
+            "listeVoiture.listeDepot.date": new Date(req.body.dateDepot),
+            "listeVoiture.listeDepot.listeRep.desce": req.body.desce
+        },
+        {
+            $set:{
+                "listeVoiture.$[elem].listeDepot.$[elem2].listeRep.$[elem3].etat": 2
+            },
+        },
+        {
+            arrayFilters:[
+                {"elem.numero": req.body.numero},
+                {"elem2.date": new Date(req.body.dateDepot)},
+                {"elem3.desce": req.body.desce}
+            ],
+        },function(err,docs){
+            if(err){
+                console.log(err);
+                res.status(400).json({statusText: 'Bad request',message: err.message});
+            }else{
+                console.log(docs);
+                res.status(200).json({message: 'Reparation terminé avec succes',data: docs});
+            }
+        }
+    );
+});
+
 module.exports = router;
