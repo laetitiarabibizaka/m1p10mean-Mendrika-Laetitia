@@ -26,7 +26,10 @@ export class VoitureService {
     console.log("tonga ato ny ", numero)
     return this.http.get(`${environment.baseUrl}client/fichevoiture/${numero}`,numero as any);
   }
-
+  getVoitureAdminBynumero(numero:string) {
+    console.log("tonga ato ny ", numero)
+    return this.http.get(`${environment.baseUrl}admin/voiture/${numero}`,numero as any);
+  }
   deposerVoiture(data:any){
     return this.http.put(`${environment.baseUrl}client/deposerReparation/`,data)
   }
@@ -35,16 +38,17 @@ export class VoitureService {
     return this.http.get(`${environment.baseUrl}client/recherchevoiture/${user}/${matricule}`,{});
   }
 
-  validerDepositionVoiture(login: string,numero: string,dateDepot: string){
+  validerDepositionVoiture(login: string,numero: string,dateDepot: Date){
     var data : any = {
       login: login,
       numero: numero,
       dateDepot: dateDepot
     }
+    console.log("dataaa ",data)
     return this.http.put(`${environment.baseUrl}admin/ajoutReparation`,data);
   }
 
-  ajouterReparation(numero: string,dateDepot: string,desce: string,pu: Number,qte: Number){
+  ajouterReparation(numero: string,dateDepot: Date,desce: string,pu: Number,qte: Number){
     var data: any = {
       numero: numero,
       dateDepot: dateDepot,
@@ -55,7 +59,7 @@ export class VoitureService {
     return this.http.put(`${environment.baseUrl}admin/terminerReparation`,data);
   }
 
-  terminerReparation(numero: string,dateDepot: string,desce: string){
+  terminerReparation(numero: string,dateDepot: Date,desce: string){
     var data: any = {
       numero: numero,
       dateDepot: dateDepot,

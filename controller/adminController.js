@@ -48,7 +48,8 @@ router.post('/traitementLogin', (req, res) => {
 });
 
 router.put('/ajoutReparation',(req,res)=>{
-    console.log("desce:"+req.body.description);
+    console.log("desce :"+req.body.numero);
+    console.log("desce2 :"+req.body.dateDepot);
     var data=ReparationVoiture.findOneAndUpdate(
         {
             "listeVoiture.numero" : req.body.numero,

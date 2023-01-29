@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ImageComponent } from './components/client/image/image.component';
 import { HeaderComponent } from './components/header/header.component';
+import { FicheReparationComponent } from './pages/atelier/fiche-reparation/fiche-reparation.component';
 import { LoginComponent } from './pages/atelier/login/login.component';
 import { ReparationEncoursComponent } from './pages/atelier/reparation-encours/reparation-encours.component';
 import { AccueilComponent } from './pages/client/accueil/accueil.component';
@@ -31,7 +32,9 @@ const routes: Routes = [
   { path: 'image', component: ImageComponent},
   { path: 'fiche/:numero', component: FichevoitureComponent},
   { path: 'atelier/reparation', component : ReparationEncoursComponent},
-  { path: 'atelier/login', component : LoginComponent}
+  { path: 'atelier/login', component : LoginComponent},
+  { path: 'atelier/fichereparation/:depot/:date/:numero', component : FicheReparationComponent},
+
 ];
 
 @NgModule({

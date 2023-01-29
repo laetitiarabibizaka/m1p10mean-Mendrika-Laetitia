@@ -35,6 +35,7 @@ import { FichevoitureComponent } from './pages/client/fichevoiture/fichevoiture.
 import { NavbarAtelierComponent } from './components/atelier/navbar-atelier/navbar-atelier.component';
 import { ReparationEncoursComponent } from './pages/atelier/reparation-encours/reparation-encours.component';
 import { LoginComponent } from './pages/atelier/login/login.component';
+import { FicheReparationComponent } from './pages/atelier/fiche-reparation/fiche-reparation.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { LoginComponent } from './pages/atelier/login/login.component';
     FichevoitureComponent,
     NavbarAtelierComponent,
     ReparationEncoursComponent,
-    LoginComponent
+    LoginComponent,
+    FicheReparationComponent
   ],
   imports: [
     BrowserModule,

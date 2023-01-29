@@ -30,7 +30,7 @@ export class ListemesreparationComponent {
         for(var i = 0; i< repV[0].listeVoiture.length; i++) {
          
           for(var n = 0; n < repV[0].listeVoiture[i].listeDepot.length;n++){
-            
+            console.log("----------",repV[0].listeVoiture[i].listeDepot[n] )
             this.voitureService.listeDeposition.push(repV[0].listeVoiture[i].listeDepot[n]);
           }
         }

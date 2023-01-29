@@ -1,4 +1,5 @@
 import { Utilisateur } from '../utilisateur/utilisateur.model'
+import { Voiture } from '../voiture/voiture.model'
 
 export class Deposition {
     id: string = ''
@@ -11,4 +12,6 @@ export class Deposition {
     dateRecuperation: Date = new Date()
     facture: Object = new Date()
     etat: number = 1
+    voiture: Voiture = new Voiture()
+    stringfy: string= ''
 }
