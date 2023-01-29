@@ -80,4 +80,35 @@ router.put('/ajoutReparation',(req,res)=>{
         }
     );
 });
+
+router.put('/receptionDepot',(req,res)=>{
+    var data=ReparationVoiture.findOneAndUpdate(
+        {
+            "listeVoiture.numero" : req.body.numero,
+            "listeVoiture.listeDepot.date": new Date(req.body.dateDepot)
+        },
+        {
+            $set:{
+                "listeVoiture.$[elem].listeDepot.$[elem2].respAtelier":req.body.login, 
+                "listeVoiture.$[elem].listeDepot.$[elem2].dateReception": new Date(),
+                "listeVoiture.$[elem].listeDepot.$[elem2].etat": 2
+            },
+        },
+        {
+            arrayFilters:[
+                {"elem.numero": req.body.numero},
+                {"elem2.date": new Date(req.body.dateDepot)}
+            ],
+        },function(err,docs){
+            if(err){
+                console.log(err);
+                res.status(400).json({statusText: 'Bad request',message: err.message});
+            }else{
+                console.log(docs);
+                res.status(200).json({message: 'Reception reussie',data: docs});
+            }
+        }
+    );
+});
+
 module.exports = router;
