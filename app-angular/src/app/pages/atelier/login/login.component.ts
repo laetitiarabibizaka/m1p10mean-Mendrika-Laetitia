@@ -22,22 +22,21 @@ export class LoginComponent {
   ngOnInit(): void {
   }
   login(): void {
-    console.log("tonggaaaa atoo ")
-    window.location.href = `atelier/reparation`;
-    this.loginService.login(this.email, this.password).subscribe(
+    this.loginService.login(this.email, this.password,this.type).subscribe(
       (data) => {
         if (data.ok) {
+          sessionStorage.removeItem("sessionUser");
           sessionStorage.setItem("sessionUser", JSON.stringify(data.data));
-          window.location.href = `atelier/atelierreparation`;
+          window.location.href = `atelier/reparation`;
         } else {
           this.hideLoader = true;
           this.error = data.error;
-          window.location.href = '/'
+          window.location.href = '/atelier/login'
         }
       }, (error) => {
         this.hideLoader= true
         this.error = "Votre email ou mot de passe n'est pas valider";
-        this.router.navigate(['/']);
+        this.router.navigate(['/atelier/login']);
       }
     )
   }

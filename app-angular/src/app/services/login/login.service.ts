@@ -9,11 +9,12 @@ import { environment } from 'src/environments/environment.prod';
 export class LoginService {
 
   constructor(private http: HttpClient) { }
-  login(email: string, password: string): Observable<any> {
+  login(email: string, password: string,role: string): Observable<any> {
 		const data:any = {
 			login:email,
-			mdp:password
+			mdp:password,
+			role: role
 		};
-		return this.http.post(`${environment.baseUrl}client/traitementLogin`,data,{});
+		return this.http.post(`${environment.baseUrl}admin/traitementLogin`,data,{});
 	}
 }
