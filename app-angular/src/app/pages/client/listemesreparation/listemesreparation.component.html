@@ -65,7 +65,8 @@
                                             <td style="display:flex;justify-content:center"><a [routerLink]="['/fiche/']"><i class="fas fa fa-eye"></i></a></td>
                                             <td>{{depot.date |date:"MM/dd/yyyy 'at' h:mma"}}</td>
                                             <td>{{depot.dateSortie |date:"MM/dd/yyyy 'at' h:mma"}}</td>
-                                            <td>{{depot.commentaire}}</td>  
+                                            <td>{{depot.commentaire}}</td> 
+                                            <td>{{depot.dateReception |date:"MM/dd/yyyy 'at' h:mma"}}</td> 
                                             <td>{{depot.respAtelier}}</td>  
                                             <td>{{depot.dateRecuperation |date:"MM/dd/yyyy 'at' h:mma"}}</td>  
                                             <td></td>                                       
