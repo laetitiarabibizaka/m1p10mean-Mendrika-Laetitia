@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 var Deposition = mongoose.model('Reparation',{
     id: {type: String},
     date: {type: Date},
+    commentaire: {type: String},
     respAtelier: {type: Object},
     dateReception: {type: Date},
     listeRep: {type: Array},

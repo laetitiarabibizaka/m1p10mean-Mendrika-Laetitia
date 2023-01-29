@@ -1,10 +1,12 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const mongoose= require('mongoose');
 
 var router=express.Router();
-var ObjectId = require('mongoose').Types.ObjectId;
+var ObjectID = require('mongoose').Types.ObjectId;
 
 var {Admin} = require('../models/Admin');
+var {ReparationVoiture} = require('../models/ReparationVoiture');
 
 router.post('/createAdmin',(req,res)=>{
     var user=new Admin({
@@ -43,4 +45,39 @@ router.post('/traitementLogin', (req, res) => {
     });
 });
 
+router.put('/ajoutReparation',(req,res)=>{
+    console.log("desce:"+req.body.description);
+    var data=ReparationVoiture.findOneAndUpdate(
+        {
+            "listeVoiture.numero" : req.body.numero,
+            "listeVoiture.listeDepot.date": new Date(req.body.dateDepot)
+        },
+        {
+            $push:{
+                "listeVoiture.$[elem].listeDepot.$[elem2].listeRep":{
+                    id: new mongoose.Types.ObjectId(),
+                    desce: req.body.description,
+                    pu: Number(req.body.pu),
+                    qte: Number(req.body.qte),
+                    montant: Number(req.body.pu)*Number(req.body.qte),
+                    etat: 1 
+                }
+            },
+        },
+        {
+            arrayFilters:[
+                {"elem.numero": req.body.numero},
+                {"elem2.date": new Date(req.body.dateDepot)}
+            ],
+        },function(err,docs){
+            if(err){
+                console.log(err);
+                res.status(400).json({statusText: 'Bad request',message: err.message});
+            }else{
+                console.log(docs);
+                res.status(200).json({message: 'Ajout de réparation reussie',data: docs});
+            }
+        }
+    );
+});
 module.exports = router;

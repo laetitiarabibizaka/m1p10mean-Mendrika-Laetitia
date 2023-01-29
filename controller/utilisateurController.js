@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
 
 var router=express.Router();
 var ObjectId = require('mongoose').Types.ObjectId;
@@ -107,7 +108,8 @@ router.post('/ajoutVoiture',(req,res) => {
                 marque : req.body.marque,
                 modele: req.body.modele,
                 listeDepot: [],
-                listePhoto: []
+                listePhoto: [],
+                etat: 0
             });
 
             voiture.save().then(()=>{
@@ -174,9 +176,11 @@ let info = transporter.sendMail({
 });*/
 
 router.put('/deposerReparation/',(req,res)=>{
+    var id = new mongoose.Types.ObjectId();
     const updateDoc = {
         $push:{
             "listeVoiture.$.listeDepot":{
+                id: id,
                 date: req.body.date,
                 commentaire: req.body.commentaire,
                 respAtelier: null,
@@ -196,7 +200,7 @@ router.put('/deposerReparation/',(req,res)=>{
             res.status(400).json({statusText: 'Bad request',message: err.message});
         }else{
             console.log(docs);
-            res.status(200).json({message: 'Deposition reussie',data: docs});
+            res.status(200).json({message: 'Deposition reussie',data: docs[0]});
         }
     });
 });
