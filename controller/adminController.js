@@ -198,4 +198,22 @@ let info = transporter.sendMail({
     res.send('{"msg": "mail envoyé"}');
 });
 
+router.get('/voiture/:matricule',(req,res)=>{
+    const varUnwind = { $unwind: "$listeVoiture" };
+    const varMatch = {
+        $match: {
+            "listeVoiture.numero": req.params.matricule,
+        },
+    };
+    ReparationVoiture.aggregate([varUnwind, varMatch], function(err,docs){
+        if(err){
+            console.log(err);
+            res.status(400).json({message: err.message,error: err.message})
+        }else{
+            res.status(200).json({data: docs})
+        }
+    });
+});
+
+
 module.exports = router;
