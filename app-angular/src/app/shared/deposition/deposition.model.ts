@@ -10,4 +10,5 @@ export class Deposition {
     dateSortie: Date = new Date()
     dateRecuperation: Date = new Date()
     facture: Object = new Date()
+    etat: number = 1
 }

@@ -39,4 +39,10 @@ export class ListemesreparationComponent {
       }
     });
   }
+
+  getStatus(etat: Number){
+    console.log("SALUUUT");
+      const status = ['Deposé','En cours de réparation','Terminé','Recuperé','Sortie','Facturé'];
+      return status[Number(etat)-1];
+  }
 }
