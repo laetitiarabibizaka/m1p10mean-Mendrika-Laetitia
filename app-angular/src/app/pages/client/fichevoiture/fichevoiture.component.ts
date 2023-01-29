@@ -33,8 +33,8 @@ export class FichevoitureComponent {
       console.log("indroooo ",numero);
       this.voitureService.getVoitureBynumero(numero).subscribe((res:any)=>{
         if(res) {
+          console.log("VITOO ", res)
            let value = res['data'] as Voiture[]
-           console.log("VOITURE ", value[0].modele)
           this.numero = value[0].numero
           this.marque = value[0].marque
           this.model = value[0].modele
@@ -47,7 +47,7 @@ export class FichevoitureComponent {
   deposerVoiture() {
     console.log("Commentaire", this.commentaire)
     console.log("Date ", this.datedepot)
-    var user=JSON.parse(sessionStorage.getItem("sessionUser"));
+    var user=JSON.parse(sessionStorage.getItem("sessionUser") as any);
     const data = {
       login: user.login,
       numero: this.numero,

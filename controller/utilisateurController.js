@@ -69,7 +69,6 @@ router.get('/voitures/:iduser',(req,res)=>{
 });
 
 router.get('/fichevoiture/:matricule',(req,res)=>{
-    console.log(req.params.matricule);
     Voiture.find({numero: req.params.matricule}, function(err,docs){
         if(err){
             console.log(err);

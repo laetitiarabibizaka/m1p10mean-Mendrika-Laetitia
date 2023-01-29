@@ -2,12 +2,12 @@ import { Utilisateur } from '../utilisateur/utilisateur.model'
 
 export class Deposition {
     id: string = ''
-    date: Date = null
+    date: Date = new Date()
     commentaire: string = ''
-    respAtelier: Utilisateur = null
-    dateReception: Date = null
+    respAtelier: Utilisateur = new Utilisateur
+    dateReception: Date = new Date()
     listeRep: [] = []
-    dateSortie: Date = null
-    dateRecuperation: Date = null
-    facture: Object = null
+    dateSortie: Date = new Date()
+    dateRecuperation: Date = new Date()
+    facture: Object = new Date()
 }

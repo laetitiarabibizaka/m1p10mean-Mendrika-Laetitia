@@ -31,8 +31,8 @@ export class VoitureService {
     return this.http.put(`${environment.baseUrl}client/deposerReparation/`,data)
   }
 
-  getListeVoitureCritere(user,matricule){
-    return this.http.get(`${environment.baseUrl}client/recherchevoiture/${user}/${matricule}`,null);
+  getListeVoitureCritere(user:string,matricule:string){
+    return this.http.get(`${environment.baseUrl}client/recherchevoiture/${user}/${matricule}`,{});
   }
 
   
