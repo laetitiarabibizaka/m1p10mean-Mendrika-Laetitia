@@ -1,12 +1,14 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const mongoose= require('mongoose');
+const nodemailer= require('nodemailer');
 
 var router=express.Router();
 var ObjectID = require('mongoose').Types.ObjectId;
 
 var {Admin} = require('../models/Admin');
 var {ReparationVoiture} = require('../models/ReparationVoiture');
+var {Utilisateur} = require('../models/Utilisateur');
 
 router.post('/createAdmin',(req,res)=>{
     var user=new Admin({
@@ -168,6 +170,32 @@ router.put('/changerEtatDeposition',(req,res)=>{
             }
         }
     );
+});
+
+router.post('/envoieMail', (req, res) => {
+    var adm = new Utilisateur({
+        email: req.body.email,
+        mdp: req.body.mdp
+    });
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
+        auth: {
+          user: "laetitiarabibizaka@gmail.com",
+          pass: "xogclqknyqzzzfqy",
+        },
+        tls: {
+        rejectUnauthorized: false
+        }
+    });
+let info = transporter.sendMail({
+        from: "laetitiarabibizaka@gmail.com",
+        to:  req.body.login, 
+        subject: "Recuperation de voiture",
+        html: "<p>La réparation de votre véhicule : "+req.body.numero+" est terminée. Vous pouvez venir la récuperer.</p>"
+ });
+    res.send('{"msg": "mail envoyé"}');
 });
 
 module.exports = router;
