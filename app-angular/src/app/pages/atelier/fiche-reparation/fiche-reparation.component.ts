@@ -82,13 +82,14 @@ export class FicheReparationComponent {
         this.router.navigate(['/']);
       });
   }
-  terminerReparation(){
+  terminerReparation(desce: string){
     var user=JSON.stringify(sessionStorage.getItem("sessionUser"));
     let utilisateur: Utilisateur = <Utilisateur>JSON.parse(sessionStorage.getItem("sessionUser") as any);
     console.log("Utilisateur ",utilisateur)
-    this.voitureService.terminerReparation(this.numero,this.deposition.date,this.desce).subscribe((res)=>{
+    this.voitureService.terminerReparation(this.numero,this.deposition.date,desce).subscribe((res)=>{
       console.log(res)
-      this.router.navigate(['/atelier/fichereparation',this.deposition.commentaire,this.deposition.date,this.numero]);
+      this.fichevoiture();
+      //this.router.navigate(['/atelier/fichereparation',this.deposition.commentaire,this.deposition.date,this.numero]);
     },(error) => {
       console.log(error);
         this.router.navigate(['/']);

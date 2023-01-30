@@ -154,14 +154,14 @@
 
                         <div class="card">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">reparation</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Réparations à faire</h6>
                             </div>
                            
                             <div class="card-body">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th style="width: 100px;">Piéce</th>
+                                            <th style="width: 100px;">Pièce</th>
                                             <th>Quantité</th>
                                             <th>Prix</th>
                                             <th>Prix Total</th>
@@ -178,12 +178,13 @@
                                             <th>{{reparation.pu}}</th>
                                             <th>{{reparation.montant}}</th>
                                             <th>{{getStatusRep(reparation.etat)}}</th>
+                                            <th><button class="btn btn-secondary" *ngIf="reparation.etat===1" (click)="terminerReparation(reparation.desce)">Termnier</button></th>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="row">
                                     <div class="" style="float: right;margin-right: 20px;">                   
-                                            <button class="btn btn-primary" (click)="terminerReparation()">Terminer la reparation</button>
+                                            <button class="btn btn-primary" >Cloturer la réparation</button>
                                     </div>
                                     <div class="">                   
                                         <button class="btn btn-secondary" >Facturer</button>

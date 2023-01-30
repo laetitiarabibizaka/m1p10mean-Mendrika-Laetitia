@@ -117,7 +117,7 @@ router.put('/terminerReparation',(req,res)=>{
     var data=ReparationVoiture.findOneAndUpdate(
         {
             "listeVoiture.numero" : req.body.numero,
-            "listeVoiture.listeDepot.date": new Date(req.body.dateDepot),
+            "listeVoiture.listeDepot.date": req.body.dateDepot,
             "listeVoiture.listeDepot.listeRep.desce": req.body.desce
         },
         {
@@ -128,7 +128,7 @@ router.put('/terminerReparation',(req,res)=>{
         {
             arrayFilters:[
                 {"elem.numero": req.body.numero},
-                {"elem2.date": new Date(req.body.dateDepot)},
+                {"elem2.date": req.body.dateDepot},
                 {"elem3.desce": req.body.desce}
             ],
         },function(err,docs){
