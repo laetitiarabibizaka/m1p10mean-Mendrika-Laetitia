@@ -48,17 +48,17 @@ router.post('/traitementLogin', (req, res) => {
 });
 
 router.put('/ajoutReparation',(req,res)=>{
-    console.log("desce:"+req.body.description);
+    console.log("desce:"+req.body.desce);
     var data=ReparationVoiture.findOneAndUpdate(
         {
             "listeVoiture.numero" : req.body.numero,
-            "listeVoiture.listeDepot.date": new Date(req.body.dateDepot)
+            "listeVoiture.listeDepot.date": req.body.dateDepot
         },
         {
             $push:{
                 "listeVoiture.$[elem].listeDepot.$[elem2].listeRep":{
                     id: new mongoose.Types.ObjectId(),
-                    desce: req.body.description,
+                    desce: req.body.desce,
                     pu: Number(req.body.pu),
                     qte: Number(req.body.qte),
                     montant: Number(req.body.pu)*Number(req.body.qte),
@@ -69,7 +69,7 @@ router.put('/ajoutReparation',(req,res)=>{
         {
             arrayFilters:[
                 {"elem.numero": req.body.numero},
-                {"elem2.date": new Date(req.body.dateDepot)}
+                {"elem2.date": req.body.dateDepot}
             ],
         },function(err,docs){
             if(err){
