@@ -3,6 +3,6 @@ export const environment = {
     config:{
       apiUrl:'https//example.com/api-test/'
     },
-    baseUrl : 'http://localhost:3000/'
+    baseUrl : 'https://m1p10mean-mendrika-laetitia.up.railway.app/'
     //baseUrl : 'http://localhost:3000/'
   };
