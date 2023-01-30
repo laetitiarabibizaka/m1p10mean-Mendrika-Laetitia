@@ -22,4 +22,4 @@ app.use('/marque',marqueController);
 app.use('/admin',adminController);
 
 app.use('/**',index);
-app.listen(80, () => console.log('Server started at port : 3000'));
+app.listen(8000, () => console.log('Server started at port : 8000'));
