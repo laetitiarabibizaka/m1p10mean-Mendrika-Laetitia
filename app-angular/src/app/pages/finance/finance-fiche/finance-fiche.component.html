@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Accueil - Mada repair</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+<style>
+    .img-vehicule {
+        margin-left: 50px;
+        width: 250px;height: 250px;border-radius: 0.5em;border-style: dotted;
+    }
+    .img-vehicule img {
+        padding: 20px;
+    }
+    .item {
+        display: flex;
+        margin-top: 10px;
+        margin-left: 20px;
+        margin-bottom: 25px;
+    }
+    .item-label {
+        padding-right: 20px;
+        font-size: 15px;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: black;
+    }
+    </style>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!--navbar-->
+        <app-navbar-finance></app-navbar-finance>
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">         
+            <!-- Main Content -->
+            <div id="content">
+                 <!--menubar-->
+                <app-menubar-atelier></app-menubar-atelier>
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Fiche Reparation</h1>
+                        
+                    </div>
+                     
+                
+                    <!-- Content Row -->
+                </div>
+                <!-- Grow In Utility -->
+                     <div class="col-lg-12">
+
+                        <div class="card">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Information</h6>
+                            </div>
+                           
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="label">
+                                           Voiture : 
+                                        </div>
+                                        <div class="value">
+                                            {{ numero }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="label">
+                                            Date :
+                                        </div>
+                                        <div class="value">
+                                             {{ deposition.date|date:"MM/dd/yyyy 'at' h:mma" }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="label">
+                                           Probleme :
+                                        </div>
+                                        <div class="value">
+                                            {{ deposition.commentaire }}
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="label">
+                                           Etat : 
+                                        </div>
+                                        <div class="value">
+                                            {{ getStatus(deposition.etat) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                
+                    <div class="col-lg-12">
+
+                        <div class="card">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Réparations à faire</h6>
+                            </div>
+                           
+                            <div class="card-body">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 100px;">Pièce</th>
+                                            <th>Quantité</th>
+                                            <th>Prix</th>
+                                            <th>Prix Total</th>
+                                            <th>Etat</th>                                    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                    <tbody>
+                                        <tr *ngFor="let reparation of voitureService.listeReparation">
+                                            <th>{{reparation.desce}}</th>
+                                            <th>{{reparation.qte}}</th>
+                                            <th>{{reparation.pu}}</th>
+                                            <th>{{reparation.montant}}</th>
+                                            <th>{{getStatusRep(reparation.etat)}}</th>
+                                        </tr>
+                                    </tbody>
+                                    <tbody>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th>Total</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="row">                                  
+                                    <div class="col-md-4">                   
+                                        <button class="btn btn-secondary" *ngIf="this.deposition.etat===4">Facturer</button>
+                                </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>    
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+            <app-footer-client></app-footer-client>
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/assets/js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>
