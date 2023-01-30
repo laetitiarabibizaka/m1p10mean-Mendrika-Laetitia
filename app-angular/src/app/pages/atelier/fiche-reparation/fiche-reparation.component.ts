@@ -5,6 +5,7 @@ import { Deposition } from 'src/app/shared/deposition/deposition.model';
 import { Utilisateur } from 'src/app/shared/utilisateur/utilisateur.model';
 import { Voiture } from 'src/app/shared/voiture/voiture.model';
 import { ReparationVoiture } from 'src/app/shared/reparationvoiture/reparation-voiture.model';
+import { coerceStringArray } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'app-fiche-reparation',
@@ -19,6 +20,7 @@ export class FicheReparationComponent {
   desce : string =''
   pu : Number = 0.0
   qt : Number = 0.0
+  montantTotal : Number = 0.0
   constructor(
     private activatedRoute: ActivatedRoute,
     public voitureService : VoitureService,
@@ -47,6 +49,7 @@ export class FicheReparationComponent {
                 this.voitureService.listeReparation = []; 
                 for(var v=0;v<value[0].listeVoiture.listeDepot[i].listeRep.length;v++){
                   this.voitureService.listeReparation.push(value[0].listeVoiture.listeDepot[i].listeRep[v]);
+                  this.montantTotal=this.montantTotal+value[0].listeVoiture.listeDepot[i].listeRep[v].montant;
                 }         
               }
             }
@@ -120,6 +123,15 @@ export class FicheReparationComponent {
     },(error)=>{
       console.log(error);
 
+    });
+  }
+
+  genererFacture(){
+    var user=JSON.stringify(sessionStorage.getItem("sessionUser"));
+    this.voitureService.genererFacture(this.numero,this.deposition.date,user['login'],this.montantTotal).subscribe((res)=>{
+      this.router.navigate(['/atelier/listeFactures']);
+    },(error)=>{
+      console.log(error);
     });
   }
   

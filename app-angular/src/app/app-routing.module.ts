@@ -16,6 +16,7 @@ import { ProfileComponent } from './pages/client/profile/profile.component';
 import { ListereparationComponent } from './pages/listereparation/listereparation.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { ListeFacturesComponent } from './pages/atelier/listefactures/liste-factures/liste-factures.component';
 
 const routes: Routes = [
   { path: '', component: UtilisateurComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'atelier/login', component : LoginComponent},
   { path: 'atelier/fichereparation/:depot/:date/:numero', component : FicheReparationComponent},
   { path: 'fichereparation/:depot/:date/:numero', component : MaficheReparationComponent},
+  { path: 'atelier/listeFactures', component: ListeFacturesComponent}
 
 ];
 

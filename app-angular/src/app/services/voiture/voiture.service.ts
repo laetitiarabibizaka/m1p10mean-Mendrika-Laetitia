@@ -5,6 +5,7 @@ import { ReparationVoiture } from 'src/app/shared/reparationvoiture/reparation-v
 import { Voiture } from 'src/app/shared/voiture/voiture.model';
 import { Deposition } from 'src/app/shared/deposition/deposition.model';
 import { ReparationModel } from 'src/app/shared/reparation/reparation.model';
+import { Facture } from 'src/app/shared/facture/facture.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class VoitureService {
   public listeVoitures: Voiture[] = [];
   public listeDeposition : Deposition[] = [];
   public listeReparation : ReparationModel[] = [];
+  public listeFacture : Facture[] = [];
 
   constructor(
 		private http: HttpClient
@@ -101,5 +103,16 @@ export class VoitureService {
       dateDepot: dateDepot
     }
     return this.http.put(`${environment.baseUrl}admin/cloturerDepot`,data);
+  }
+
+  genererFacture(numero: string, dateDepot: Date,user: string,montant: Number){
+    var data: any = {
+      numero : numero,
+      dateDepot: dateDepot,
+      login: user,
+      montant: montant
+    }
+    return this.http.put(`${environment.baseUrl}admin/genererFacture`,data);
+
   }
 }
