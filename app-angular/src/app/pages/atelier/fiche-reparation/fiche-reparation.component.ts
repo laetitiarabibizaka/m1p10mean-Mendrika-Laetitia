@@ -128,7 +128,7 @@ export class FicheReparationComponent {
 
   genererFacture(){
     var user=JSON.stringify(sessionStorage.getItem("sessionUser"));
-    this.voitureService.genererFacture(this.numero,this.deposition.date,user['login'],this.montantTotal).subscribe((res)=>{
+    this.voitureService.genererFacture(this.numero,this.deposition.date,user['login' as any],this.montantTotal).subscribe((res)=>{
       this.router.navigate(['/atelier/listeFactures']);
     },(error)=>{
       console.log(error);
