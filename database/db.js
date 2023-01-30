@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect('mongodb+srv://mendrika:AogF5RBEFKO42Fwy@cluster0.sywvem2.mongodb.net/garage',(err)=>{
+mongoose.connect('mongodb://mongo:oFVDLrGnqM2E1xWvki3K@containers-us-west-61.railway.app:7232',(err)=>{
     if(!err)
         console.log('Connection MongoDB reussie');
     else
