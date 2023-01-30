@@ -115,4 +115,12 @@ export class VoitureService {
     return this.http.put(`${environment.baseUrl}admin/genererFacture`,data);
 
   }
+
+  payerFacture(numero: string, dateDepot: Date){
+    var data: any = {
+      numero : numero,
+      dateDepot: dateDepot
+    }
+    return this.http.put(`${environment.baseUrl}admin/payerFacture`,data);
+  }
 }

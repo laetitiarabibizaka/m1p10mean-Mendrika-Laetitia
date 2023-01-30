@@ -63,9 +63,8 @@
                                             <td>{{facture.numero}}</td>  
                                             <td>{{facture.date |date:"MM/dd/yyyy 'at' h:mma"}}</td>
                                             <td>{{facture.montant}}</td>
-                                            <td>{{facture.etat}}</td>  
-                                            <td></td> 
-                                                                               
+                                            <td>{{getStatus(facture.etat)}}</td>  
+                                            <td><button class="btn btn-secondary" (click)="payerFacture(facture.numero,facture.dateDepot)" *ngIf="facture.etat===1">Payer</button></td>                   
                                         </tr>
                                     </tbody>
                                 </table>

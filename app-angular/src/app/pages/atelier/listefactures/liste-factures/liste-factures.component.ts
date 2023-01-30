@@ -36,6 +36,7 @@ export class ListeFacturesComponent {
               if(repV[l].listeVoiture[i].listeDepot[n].facture!=null){
                 var facture: Facture = repV[l].listeVoiture[i].listeDepot[n].facture;
                 facture.numero=repV[l].listeVoiture[i].numero;
+                facture.dateDepot=repV[l].listeVoiture[i].listeDepot[n].date;
                 this.voitureService.listeFacture.push(facture);
               }
              }
@@ -43,30 +44,22 @@ export class ListeFacturesComponent {
         }
       }
     },(error)=>{
-
+      console.log(error);
     });
   }
-  getreparation(){
-    var user = JSON.parse(sessionStorage.getItem("sessionUser") as any);
-    var data=user.login;
-    this.voitureService.getListeVoitureTotal().subscribe((res:any)=>{
-      if(res) { 
-        this.voitureService.listeVoitures = [];
-        var repV = res['data'] as ReparationVoiture[];
-        console.log("data:"+JSON.stringify(repV));
-        console.log("COUCOU ", repV)
-        for(var l=0;l<repV.length;l++){
-          for(var i = 0; i< repV[l].listeVoiture.length; i++) {
-            for(var n = 0; n < repV[l].listeVoiture[i].listeDepot.length;n++){  
-              repV[l].listeVoiture[i].listeDepot[n]['voiture'] = repV[l].listeVoiture[i] 
-              this.voitureService.listeDeposition.push(repV[l].listeVoiture[i].listeDepot[n]);
-             }
-          }
-        }
-        
-      } else {
-        //alert("Erreur");
+  
+  getStatus(etat: Number){
+    const status = ['Non payée','Payée'];
+    return status[Number(etat)-1];
+  }
+
+  payerFacture(numero: string, dateDepot: Date){
+    this.voitureService.payerFacture(numero,dateDepot).subscribe((res:any)=>{
+      if(res){
+        this.getListeFacture();
       }
+    },(error)=>{
+      console.log(error);
     });
   }
 }

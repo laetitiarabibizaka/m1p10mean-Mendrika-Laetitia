@@ -5,4 +5,5 @@ export class Facture {
     numero: string = ''
     respFinance: string = ''
     etat: Number = 0
+    dateDepot: Date = new Date()
 }
