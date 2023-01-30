@@ -52,7 +52,7 @@ export class VoitureService {
       dateDepot: dateDepot
     }
     console.log("dataaa ",data)
-    return this.http.put(`${environment.baseUrl}admin/ajoutReparation`,data);
+    return this.http.put(`${environment.baseUrl}admin/receptionDepot`,data);
   }
 
   ajouterReparation(numero: string,dateDepot: Date,desce: string,pu: Number,qte: Number){
@@ -76,7 +76,7 @@ export class VoitureService {
     return this.http.put(`${environment.baseUrl}admin/terminerReparation`,data);
   }
 
-  changerEtatDeposition(numero: string, dateDepot: string,etat: Number){
+  changerEtatDeposition(numero: string, dateDepot: Date,etat: Number){
     var data: any = {
       numero: numero,
       dateDepot: dateDepot,
@@ -88,5 +88,12 @@ export class VoitureService {
   envoyerEmail(login: string){
     return this.http.post(`${environment.baseUrl}admin/envoieMail`,{login: login});
   } 
-  
+
+  cloturerDepot(numero: string, dateDepot: Date){
+    var data: any = {
+      numero: numero,
+      dateDepot: dateDepot
+    }
+    return this.http.put(`${environment.baseUrl}admin/cloturerDepot`,data);
+  }
 }

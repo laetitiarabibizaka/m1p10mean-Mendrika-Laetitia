@@ -87,7 +87,7 @@ router.put('/receptionDepot',(req,res)=>{
     var data=ReparationVoiture.findOneAndUpdate(
         {
             "listeVoiture.numero" : req.body.numero,
-            "listeVoiture.listeDepot.date": new Date(req.body.dateDepot)
+            "listeVoiture.listeDepot.date": req.body.dateDepot
         },
         {
             $set:{
@@ -99,7 +99,7 @@ router.put('/receptionDepot',(req,res)=>{
         {
             arrayFilters:[
                 {"elem.numero": req.body.numero},
-                {"elem2.date": new Date(req.body.dateDepot)}
+                {"elem2.date": req.body.dateDepot}
             ],
         },function(err,docs){
             if(err){
@@ -108,6 +108,35 @@ router.put('/receptionDepot',(req,res)=>{
             }else{
                 console.log(docs);
                 res.status(200).json({message: 'Reception reussie',data: docs});
+            }
+        }
+    );
+});
+
+router.put('/cloturerDepot',(req,res)=>{
+    var data=ReparationVoiture.findOneAndUpdate(
+        {
+            "listeVoiture.numero" : req.body.numero,
+            "listeVoiture.listeDepot.date": req.body.dateDepot
+        },
+        {
+            $set:{
+                "listeVoiture.$[elem].listeDepot.$[elem2].dateSortie": new Date(),
+                "listeVoiture.$[elem].listeDepot.$[elem2].etat": 3
+            },
+        },
+        {
+            arrayFilters:[
+                {"elem.numero": req.body.numero},
+                {"elem2.date": req.body.dateDepot}
+            ],
+        },function(err,docs){
+            if(err){
+                console.log(err);
+                res.status(400).json({statusText: 'Bad request',message: err.message});
+            }else{
+                console.log(docs);
+                res.status(200).json({message: 'Sortie reussie',data: docs});
             }
         }
     );

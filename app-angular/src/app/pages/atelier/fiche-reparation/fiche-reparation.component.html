@@ -104,10 +104,19 @@
                                     </div>
                                     
                                 </div>
-                               
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="label">
+                                           Etat : 
+                                        </div>
+                                        <div class="value">
+                                            {{ getStatus(deposition.etat) }}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-12" style="margin:20px;display: flex;justify-content: left;">                   
-                                <button (click)="assignerReparation()" class="btn btn-primary" name="prix">Assigner</button>
+                                <button (click)="assignerReparation()" class="btn btn-primary" *ngIf="deposition.etat===1">Receptionner</button>
                             </div>
                         </div>
 
@@ -184,10 +193,10 @@
                                 </table>
                                 <div class="row">
                                     <div class="" style="float: right;margin-right: 20px;">                   
-                                            <button class="btn btn-primary" >Cloturer la réparation</button>
+                                            <button class="btn btn-primary" (click)="cloturerDeposition()">Cloturer la réparation</button>
                                     </div>
                                     <div class="">                   
-                                        <button class="btn btn-secondary" >Facturer</button>
+                                        <button class="btn btn-secondary" *ngIf="role===2">Facturer</button>
                                 </div>
                                 </div>
                             </div>
