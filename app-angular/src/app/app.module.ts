@@ -42,6 +42,8 @@ import { ListeFacturesComponent } from './pages/atelier/listefactures/liste-fact
 import { FinanceAcceuilComponent } from './pages/finance/finance-acceuil/finance-acceuil.component';
 import { NavbarFinanceComponent } from './components/finance/navbar-finance/navbar-finance.component';
 import { FinanceFicheComponent } from './pages/finance/finance-fiche/finance-fiche.component';
+import { SaisieDepenseComponent } from './pages/finance/saisie-depense/saisie-depense.component';
+import { ListeDepenseComponent } from './pages/finance/liste-depense/liste-depense.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { FinanceFicheComponent } from './pages/finance/finance-fiche/finance-fic
     ListeFacturesComponent,
     FinanceAcceuilComponent,
     NavbarFinanceComponent,
-    FinanceFicheComponent
+    FinanceFicheComponent,
+    SaisieDepenseComponent,
+    ListeDepenseComponent
   ],
   imports: [
     BrowserModule,

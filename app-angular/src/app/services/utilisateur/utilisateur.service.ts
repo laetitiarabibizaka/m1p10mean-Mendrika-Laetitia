@@ -27,4 +27,15 @@ export class UtilisateurService {
 		};
 		return this.http.post(`${environment.baseUrl}client/createUser`,data,{});
 	}
+	saisiedepense(desce:string,date:Date,montant:Number) : Observable<any>{
+		const data:any={
+			desce: desce,
+			date: date,
+			montant: montant
+		};
+		return this.http.post(`${environment.baseUrl}admin/saisieDepense`,data,{});
+	}
+	getListeDepense(){
+		return this.http.get(`${environment.baseUrl}admin/listedepense`,{});
+	  }
 }

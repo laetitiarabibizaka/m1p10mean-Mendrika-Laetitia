@@ -7,6 +7,7 @@ var router=express.Router();
 var ObjectID = require('mongoose').Types.ObjectId;
 
 var {Admin} = require('../models/Admin');
+var {Depense} = require('../models/Depense');
 var {ReparationVoiture} = require('../models/ReparationVoiture');
 var {Utilisateur} = require('../models/Utilisateur');
 
@@ -347,4 +348,34 @@ router.put('/payerFacture',(req,res)=>{
     );
 });
 
+router.post('/saisieDepense',(req,res)=>{
+    var dep=new Depense({
+        desce: req.body.desce,
+        date: req.body.date,
+        montant: req.body.montant,
+        etat: 1
+    });
+
+    dep.save().then(()=>{
+        res.status(200).json({message: "Dépense créé avec succes", data: dep})
+    })
+    .catch((error)=>{
+        let errMsg=error.message;
+        if(error.code=11000){
+            errMsg='erreur lors de l`insertion';
+        }
+        res.status(400).json({statusText: 'Bad request',message: errMsg});
+    })
+});
+
+router.get('/listedepense/',(req,res)=>{
+    Depense.find({}, function(err,docs){
+        if(err){
+            console.log(err);
+            res.status(400).json({message: err.message,error: err.message})
+        }else{
+            res.status(200).json({data: docs})
+        }
+    });
+});
 module.exports = router;
