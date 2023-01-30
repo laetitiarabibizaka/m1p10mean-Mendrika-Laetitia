@@ -22,6 +22,11 @@ export class VoitureService {
     return this.http.get(`${environment.baseUrl}client/voitures/${data}`,data);
   }
 
+  getListeVoitureTotal(){
+    var data =  {};
+    return this.http.get(`${environment.baseUrl}admin/voitures/`,data);
+  }
+
   getVoitureBynumero(numero:string) {
     console.log("tonga ato ny ", numero)
     return this.http.get(`${environment.baseUrl}client/fichevoiture/${numero}`,numero as any);
@@ -56,7 +61,8 @@ export class VoitureService {
       pu: pu,
       qte: qte
     }
-    return this.http.put(`${environment.baseUrl}admin/terminerReparation`,data);
+    console.log("DATA="+JSON.stringify(data));
+    return this.http.put(`${environment.baseUrl}admin/ajoutReparation`,data);
   }
 
   terminerReparation(numero: string,dateDepot: Date,desce: string){

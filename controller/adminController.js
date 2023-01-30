@@ -48,8 +48,7 @@ router.post('/traitementLogin', (req, res) => {
 });
 
 router.put('/ajoutReparation',(req,res)=>{
-    console.log("desce :"+req.body.numero);
-    console.log("desce2 :"+req.body.dateDepot);
+    console.log("desce:"+req.body.description);
     var data=ReparationVoiture.findOneAndUpdate(
         {
             "listeVoiture.numero" : req.body.numero,
@@ -207,6 +206,17 @@ router.get('/voiture/:matricule',(req,res)=>{
         },
     };
     ReparationVoiture.aggregate([varUnwind, varMatch], function(err,docs){
+        if(err){
+            console.log(err);
+            res.status(400).json({message: err.message,error: err.message})
+        }else{
+            res.status(200).json({data: docs})
+        }
+    });
+});
+
+router.get('/voitures/',(req,res)=>{
+    ReparationVoiture.find({}, function(err,docs){
         if(err){
             console.log(err);
             res.status(400).json({message: err.message,error: err.message})

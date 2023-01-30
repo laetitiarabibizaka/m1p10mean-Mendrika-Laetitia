@@ -22,17 +22,21 @@ export class ReparationEncoursComponent {
   getreparation(){
     var user = JSON.parse(sessionStorage.getItem("sessionUser") as any);
     var data=user.login;
-    this.voitureService.getListeVoiture(data).subscribe((res:any)=>{
+    this.voitureService.getListeVoitureTotal().subscribe((res:any)=>{
       if(res) { 
         this.voitureService.listeVoitures = [];
         var repV = res['data'] as ReparationVoiture[];
+        console.log("data:"+JSON.stringify(repV));
         console.log("COUCOU ", repV)
-        for(var i = 0; i< repV[0].listeVoiture.length; i++) {
-          for(var n = 0; n < repV[0].listeVoiture[i].listeDepot.length;n++){  
-            repV[0].listeVoiture[i].listeDepot[n]['voiture'] = repV[0].listeVoiture[i] 
-            this.voitureService.listeDeposition.push(repV[0].listeVoiture[i].listeDepot[n]);
-           }
+        for(var l=0;l<repV.length;l++){
+          for(var i = 0; i< repV[l].listeVoiture.length; i++) {
+            for(var n = 0; n < repV[l].listeVoiture[i].listeDepot.length;n++){  
+              repV[l].listeVoiture[i].listeDepot[n]['voiture'] = repV[l].listeVoiture[i] 
+              this.voitureService.listeDeposition.push(repV[l].listeVoiture[i].listeDepot[n]);
+             }
+          }
         }
+        
       } else {
         //alert("Erreur");
       }

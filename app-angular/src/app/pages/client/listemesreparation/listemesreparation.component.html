@@ -69,7 +69,7 @@
                                             <td>{{depot.dateReception |date:"MM/dd/yyyy 'at' h:mma"}}</td> 
                                             <td>{{depot.respAtelier}}</td>  
                                             <td>{{depot.dateRecuperation |date:"MM/dd/yyyy 'at' h:mma"}}</td>  
-                                            <td></td>                                       
+                                            <td>{{getStatus(depot.etat)}}</td>                                       
                                         </tr>
                                     </tbody>
                                 </table>
