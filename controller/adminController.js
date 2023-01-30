@@ -255,5 +255,67 @@ router.get('/voitures/',(req,res)=>{
     });
 });
 
+router.put('/genererFacture',(req,res)=>{
+    var data=ReparationVoiture.findOneAndUpdate(
+        {
+            "listeVoiture.numero" : req.body.numero,
+            "listeVoiture.listeDepot.date": req.body.dateDepot,
+        },
+        {
+            $set:{
+                "listeVoiture.$[elem].listeDepot.$[elem2].facture":{
+                    id: new mongoose.Types.ObjectId(),
+                    date: new Date(),
+                    montant: Number(req.body.montant),
+                    respFinance: req.body.login,
+                    etat: 1
+                },
+                "listeVoiture.$[elem].listeDepot.$[elem2].etat": 4
+            },
+        },
+        {
+            arrayFilters:[
+                {"elem.numero": req.body.numero},
+                {"elem2.date": req.body.dateDepot},
+            ],
+        },function(err,docs){
+            if(err){
+                console.log(err);
+                res.status(400).json({statusText: 'Bad request',message: err.message});
+            }else{
+                console.log(docs);
+                res.status(200).json({message: 'Facture generée avec succes',data: docs});
+            }
+        }
+    );
+});
+
+router.put('/payerFacture',(req,res)=>{
+    var data=ReparationVoiture.findOneAndUpdate(
+        {
+            "listeVoiture.numero" : req.body.numero,
+            "listeVoiture.listeDepot.date": req.body.dateDepot,
+        },
+        {
+            $set:{
+                "listeVoiture.$[elem].listeDepot.$[elem2].facture.etat": 2
+            },
+        },
+        {
+            arrayFilters:[
+                {"elem.numero": req.body.numero},
+                {"elem2.date": req.body.dateDepot},
+            ],
+        },function(err,docs){
+            if(err){
+                console.log(err);
+                res.status(400).json({statusText: 'Bad request',message: err.message});
+            }else{
+                console.log(docs);
+                res.status(200).json({message: 'Facture payée avec succes',data: docs});
+            }
+        }
+    );
+});
 
 module.exports = router;
