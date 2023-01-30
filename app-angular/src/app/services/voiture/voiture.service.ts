@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment.prod';
 import { ReparationVoiture } from 'src/app/shared/reparationvoiture/reparation-voiture.model';
 import { Voiture } from 'src/app/shared/voiture/voiture.model';
 import { Deposition } from 'src/app/shared/deposition/deposition.model';
+import { ReparationModel } from 'src/app/shared/reparation/reparation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class VoitureService {
   reparationVoitures: ReparationVoiture[] = [];
   public listeVoitures: Voiture[] = [];
   public listeDeposition : Deposition[] = [];
+  public listeReparation : ReparationModel[] = [];
 
   constructor(
 		private http: HttpClient

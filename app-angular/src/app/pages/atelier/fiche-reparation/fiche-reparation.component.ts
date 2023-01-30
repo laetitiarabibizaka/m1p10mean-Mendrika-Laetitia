@@ -18,7 +18,7 @@ export class FicheReparationComponent {
   qt : Number = 0.0
   constructor(
     private activatedRoute: ActivatedRoute,
-    private voitureService : VoitureService,
+    public voitureService : VoitureService,
     private router: Router
   ){
     this.fichevoiture()
@@ -37,7 +37,11 @@ export class FicheReparationComponent {
               
               if(value[0].listeVoiture.listeDepot[i].commentaire == depot && value[0].listeVoiture.listeDepot[i].date ==  date ){
                 this.deposition = value[0].listeVoiture.listeDepot[i]
-                console.log("coucou ", value[0].listeVoiture.listeDepot[i].commentaire)            
+                console.log("coucou ", value[0].listeVoiture.listeDepot[i].commentaire) 
+                this.voitureService.listeReparation = []; 
+                for(var v=0;v<value[0].listeVoiture.listeDepot[i].listeRep.length;v++){
+                  this.voitureService.listeReparation.push(value[0].listeVoiture.listeDepot[i].listeRep[v]);
+                }         
               }
             }
           } else {
@@ -45,6 +49,11 @@ export class FicheReparationComponent {
           }
         });
     });
+  }
+
+  getStatusRep(etat: Number){
+    const status = ['En cours','Termniné'];
+    return status[Number(etat)-1];
   }
 
   assignerReparation(){
@@ -66,7 +75,8 @@ export class FicheReparationComponent {
     console.log("Utilisateur ",utilisateur)
     this.voitureService.ajouterReparation(this.numero,this.deposition.date,this.desce,this.pu,this.qt).subscribe((res)=>{
       console.log(res)
-      this.router.navigate(['/atelier/fichereparation',this.deposition.commentaire,this.deposition.date,this.numero]);
+      this.fichevoiture();
+      //this.router.navigate(['/atelier/fichereparation',this.deposition.commentaire,this.deposition.date,this.numero]);
     },(error) => {
       console.log(error);
         this.router.navigate(['/']);

@@ -165,7 +165,6 @@
                                             <th>Quantité</th>
                                             <th>Prix</th>
                                             <th>Prix Total</th>
-                                            <th>Date</th>
                                             <th>Etat</th>                                    
                                         </tr>
                                     </thead>
@@ -173,13 +172,12 @@
                                         
                                     </tbody>
                                     <tbody>
-                                        <tr>
-                                            <th></th>
-                                            <th>Total</th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
+                                        <tr *ngFor="let reparation of voitureService.listeReparation">
+                                            <th>{{reparation.desce}}</th>
+                                            <th>{{reparation.qte}}</th>
+                                            <th>{{reparation.pu}}</th>
+                                            <th>{{reparation.montant}}</th>
+                                            <th>{{getStatusRep(reparation.etat)}}</th>
                                         </tr>
                                     </tbody>
                                 </table>

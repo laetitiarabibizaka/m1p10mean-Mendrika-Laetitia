@@ -1,5 +1,6 @@
 import { Utilisateur } from '../utilisateur/utilisateur.model'
 import { Voiture } from '../voiture/voiture.model'
+import { ReparationModel } from '../reparation/reparation.model'
 
 export class Deposition {
     id: string = ''
@@ -7,7 +8,7 @@ export class Deposition {
     commentaire: string = ''
     respAtelier: Utilisateur = new Utilisateur
     dateReception: Date = new Date()
-    listeRep: [] = []
+    listeRep: ReparationModel[] = []
     dateSortie: Date = new Date()
     dateRecuperation: Date = new Date()
     facture: Object = new Date()
