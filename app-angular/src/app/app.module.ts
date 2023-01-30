@@ -39,6 +39,9 @@ import { FicheReparationComponent } from './pages/atelier/fiche-reparation/fiche
 import { MenubarAtelierComponent } from './components/atelier/menubar-atelier/menubar-atelier.component';
 import { MaficheReparationComponent } from './pages/client/mafiche-reparation/mafiche-reparation.component';
 import { ListeFacturesComponent } from './pages/atelier/listefactures/liste-factures/liste-factures.component';
+import { FinanceAcceuilComponent } from './pages/finance/finance-acceuil/finance-acceuil.component';
+import { NavbarFinanceComponent } from './components/finance/navbar-finance/navbar-finance.component';
+import { FinanceFicheComponent } from './pages/finance/finance-fiche/finance-fiche.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +70,10 @@ import { ListeFacturesComponent } from './pages/atelier/listefactures/liste-fact
     FicheReparationComponent,
     MenubarAtelierComponent,
     MaficheReparationComponent,
-    ListeFacturesComponent
+    ListeFacturesComponent,
+    FinanceAcceuilComponent,
+    NavbarFinanceComponent,
+    FinanceFicheComponent
   ],
   imports: [
     BrowserModule,

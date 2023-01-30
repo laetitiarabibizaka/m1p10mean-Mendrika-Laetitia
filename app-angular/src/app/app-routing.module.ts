@@ -13,6 +13,8 @@ import { ListemesreparationComponent } from './pages/client/listemesreparation/l
 import { ListemesvoitureComponent } from './pages/client/listemesvoiture/listemesvoiture.component';
 import { MaficheReparationComponent } from './pages/client/mafiche-reparation/mafiche-reparation.component';
 import { ProfileComponent } from './pages/client/profile/profile.component';
+import { FinanceAcceuilComponent } from './pages/finance/finance-acceuil/finance-acceuil.component';
+import { FinanceFicheComponent } from './pages/finance/finance-fiche/finance-fiche.component';
 import { ListereparationComponent } from './pages/listereparation/listereparation.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
@@ -37,7 +39,10 @@ const routes: Routes = [
   { path: 'atelier/login', component : LoginComponent},
   { path: 'atelier/fichereparation/:depot/:date/:numero', component : FicheReparationComponent},
   { path: 'fichereparation/:depot/:date/:numero', component : MaficheReparationComponent},
-  { path: 'atelier/listeFactures', component: ListeFacturesComponent}
+  { path: 'atelier/listeFactures', component: ListeFacturesComponent},
+  { path: 'finance/finance-acceuil', component : FinanceAcceuilComponent},
+  { path: 'finance/saisiedepense', component : FinanceAcceuilComponent},
+  { path: 'finance/finance-fiche/:depot/:date/:numero', component : FinanceFicheComponent},
 
 ];
 

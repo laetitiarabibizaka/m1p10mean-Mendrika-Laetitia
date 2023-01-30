@@ -27,7 +27,12 @@ export class LoginComponent {
         if (data.ok) {
           sessionStorage.removeItem("sessionUser");
           sessionStorage.setItem("sessionUser", JSON.stringify(data.data));
-          window.location.href = `atelier/reparation`;
+          if(this.type == '2'){
+            window.location.href = `finance/finance-acceuil`;
+          }else{
+            window.location.href = `atelier/reparation`;
+          }
+          
         } else {
           this.hideLoader = true;
           this.error = data.error;
