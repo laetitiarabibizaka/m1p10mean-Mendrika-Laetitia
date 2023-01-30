@@ -20,6 +20,22 @@ import { ListehistoriqueComponent } from './pages/listehistorique/listehistoriqu
 import { ListereparationComponent } from './pages/listereparation/listereparation.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SigninComponent } from './pages/signin/signin.component';
+import { MenubarComponent } from './components/client/menubar/menubar.component';
+import { NavbarClientComponent } from './components/client/navbar-client/navbar-client.component';
+import { FooterClientComponent } from './components/client/footer-client/footer-client.component';
+import { ClientComponent } from './pages/client/client.component';
+import { AccueilComponent } from './pages/client/accueil/accueil.component';
+import { ListemesreparationComponent } from './pages/client/listemesreparation/listemesreparation.component';
+import { ListemesvoitureComponent } from './pages/client/listemesvoiture/listemesvoiture.component';
+import { ProfileComponent } from './pages/client/profile/profile.component';
+import { AjoutvehiculeComponent } from './pages/client/ajoutvehicule/ajoutvehicule.component';
+import { ImageComponent } from './components/client/image/image.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { FichevoitureComponent } from './pages/client/fichevoiture/fichevoiture.component';
+import { NavbarAtelierComponent } from './components/atelier/navbar-atelier/navbar-atelier.component';
+import { ReparationEncoursComponent } from './pages/atelier/reparation-encours/reparation-encours.component';
+import { LoginComponent } from './pages/atelier/login/login.component';
+import { FicheReparationComponent } from './pages/atelier/fiche-reparation/fiche-reparation.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +46,22 @@ import { SigninComponent } from './pages/signin/signin.component';
     ListehistoriqueComponent,
     ListereparationComponent,
     NavbarComponent,
-    SigninComponent
+    SigninComponent,
+    MenubarComponent,
+    AccueilComponent,
+    NavbarClientComponent,
+    FooterClientComponent,
+    ListemesreparationComponent,
+    ListemesvoitureComponent,
+    ClientComponent,
+    ProfileComponent,
+    AjoutvehiculeComponent,
+    ImageComponent,
+    FichevoitureComponent,
+    NavbarAtelierComponent,
+    ReparationEncoursComponent,
+    LoginComponent,
+    FicheReparationComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +74,8 @@ import { SigninComponent } from './pages/signin/signin.component';
     MatInputModule,
     MatIconModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxDropzoneModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

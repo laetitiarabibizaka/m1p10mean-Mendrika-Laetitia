@@ -10,8 +10,8 @@ import { UtilisateurService } from '../services/utilisateur/utilisateur.service'
 export class UtilisateurComponent {
   hideLoader: boolean = true;
   hide: boolean = true;
-  email: string = '';
-  password: string = '';
+  email: string = 'randrialita@gmail.com';
+  password: string = 'mdp123';
   error: string = '';
   constructor(
     private utilisateurService: UtilisateurService,
@@ -25,14 +25,17 @@ export class UtilisateurComponent {
     this.utilisateurService.login(this.email, this.password).subscribe(
       (data) => {
         if (data.ok) {
-          sessionStorage.setItem("resto-token", data.token);
-          window.location.href = `/`;
+          sessionStorage.setItem("sessionUser", JSON.stringify(data.data));
+          window.location.href = `/accueil`;
         } else {
           this.hideLoader = true;
           this.error = data.error;
+          window.location.href = '/'
         }
       }, (error) => {
-        this.router.navigate(['/error']);
+        this.hideLoader= true
+        this.error = "Votre email ou mot de passe n'est pas valider";
+        this.router.navigate(['/']);
       }
     )
   }
