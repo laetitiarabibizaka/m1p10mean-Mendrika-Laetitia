@@ -60,7 +60,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Fiche Vehicule</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Fiche Reparation</h1>
                         <a [routerLink]="['/mesvoitures']"  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i>Mes Voitures</a>
                     </div>
@@ -78,40 +78,46 @@
                            
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="img-vehicule">
-                                            <img src="/assets/img/undraw_rocket.svg">
+                                    <div class="col-md-4">
+                                        <div class="label">
+                                           Voiture : 
+                                        </div>
+                                        <div class="value">
+                                            {{ numero }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="label">
+                                            Date :
+                                        </div>
+                                        <div class="value">
+                                             {{ deposition.date|date:"MM/dd/yyyy 'at' h:mma" }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="label">
+                                           Probleme :
+                                        </div>
+                                        <div class="value">
+                                            {{ deposition.commentaire }}
                                         </div>
                                     </div>
                                     
-                                    <div class="col-md-7">
-                                        <div class="item">
-                                            <div class="item-label">
-                                                Immatriculation : 
-                                            </div>
-                                            <div class="item-lib">
-                                                {{ numero }}
-                                            </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="label">
+                                           Etat : 
                                         </div>
-                                        <div class="item">
-                                            <div class="item-label">
-                                                Marque : 
-                                            </div>
-                                            <div class="item-lib">
-                                                {{ marque }}
-                                            </div>
+                                        <div class="value">
+                                            {{ getStatus(deposition.etat) }}
                                         </div>
-                                        <div class="item">
-                                            <div class="item-label">
-                                                Modele : 
-                                            </div>
-                                            <div class="item-lib">
-                                                {{model}}
-                                            </div>
-                                        </div>
-                                        
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-md-12" style="margin:20px;display: flex;justify-content: left;">                   
+                                <button (click)="recuperation()" class="btn btn-primary" *ngIf="deposition.etat===3">Recupérer</button>
                             </div>
                         </div>
 
@@ -120,43 +126,50 @@
 
                         <div class="card">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Deposition </h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Réparations à faire</h6>
                             </div>
                            
                             <div class="card-body">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 200px;">Pièce</th>
+                                            <th>Quantité</th>
+                                            <th>Prix Unitaire</th>
+                                            <th>Prix Total</th>
+                                            <th>Etat</th>                                    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                    <tbody>
+                                        <tr *ngFor="let reparation of voitureService.listeReparation">
+                                            <th>{{reparation.desce}}</th>
+                                            <th>{{reparation.qte}}</th>
+                                            <th>{{reparation.pu}}</th>
+                                            <th>{{reparation.montant}}</th>
+                                            <th>{{getStatusRep(reparation.etat)}}</th>
+                                        </tr>
+                                    </tbody>
+                                    <tbody>
+                                        <tr >
+                                            <th></th>
+                                            <th></th>
+                                            <th>Total</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="item">
-                                            <div class="item-label">
-                                                Date du depôt : 
-                                            </div>
-                                            <div class="item-lib">
-                                                <input type="datetime-local" class="form-control form-control-user" [(ngModel)]="datedepot" id="datedepot"
-                                                placeholder="datedepot" [ngModelOptions]="{standalone:true}" >
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="item-label">
-                                                Quelle sont les problemes du voiture ? : 
-                                            </div>
-                                            <div class="item-lib">
-                                                <textarea  type="textarea" class="form-control form-control-user" [(ngModel)]="commentaire" id="commentaire"
-                                                placeholder="Commentaires" [ngModelOptions]="{standalone:true}" ></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="item-label">
-                                                <button (click)="deposerVoiture()" class="btn btn-danger btn-user btn-block">
-                                                    Deposer
-                                                </button> 
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
+                            
                         </div>
 
-                    </div>
+                    </div>    
                 <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->

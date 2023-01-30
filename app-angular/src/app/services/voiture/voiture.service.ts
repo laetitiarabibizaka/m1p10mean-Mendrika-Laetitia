@@ -75,7 +75,13 @@ export class VoitureService {
     }
     return this.http.put(`${environment.baseUrl}admin/terminerReparation`,data);
   }
-
+  recuperationVoiture(numero: string,dateDepot: Date){
+    var data: any = {
+      numero: numero,
+      dateDepot: dateDepot
+    }
+    return this.http.put(`${environment.baseUrl}admin/recupererVoiture`,data);
+  }
   changerEtatDeposition(numero: string, dateDepot: Date,etat: Number){
     var data: any = {
       numero: numero,

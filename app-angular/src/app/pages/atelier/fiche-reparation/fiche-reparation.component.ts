@@ -14,7 +14,7 @@ import { ReparationVoiture } from 'src/app/shared/reparationvoiture/reparation-v
 export class FicheReparationComponent {
   deposition : Deposition = new Deposition()
   loginClient: string = ''
-  role: Number = 0
+  role: string = ''
   numero : string = ''
   desce : string =''
   pu : Number = 0.0
@@ -32,7 +32,7 @@ export class FicheReparationComponent {
       let date = params['date'];
       let depot = params['depot'];
       var user=JSON.stringify(sessionStorage.getItem("sessionUser"));
-      this.role = user['role'];
+      this.role = user['role' as any];
       console.log("indroooo ",this.numero," --- ",depot);
         this.voitureService.getVoitureAdminBynumero(this.numero).subscribe((res:any)=>{
           if(res) {

@@ -13,8 +13,10 @@ export class ListemesreparationComponent {
     private router: Router,
     public voitureService: VoitureService
   ) {
-    this.getreparation()
-  }
+    if(this.voitureService.listeDeposition!=null){
+      this.getreparation()
+    }
+    }
 
   ngOnInit(){
 
@@ -26,12 +28,12 @@ export class ListemesreparationComponent {
       if(res) { 
         this.voitureService.listeVoitures = [];
         var repV = res['data'] as ReparationVoiture[];
-        console.log("COUCOU ", repV)
-        for(var i = 0; i< repV[0].listeVoiture.length; i++) {
-         
-          for(var n = 0; n < repV[0].listeVoiture[i].listeDepot.length;n++){
-            console.log("----------",repV[0].listeVoiture[i].listeDepot[n] )
-            this.voitureService.listeDeposition.push(repV[0].listeVoiture[i].listeDepot[n]);
+        for(var l=0;l<repV.length;l++){
+          for(var i = 0; i< repV[l].listeVoiture.length; i++) {
+            for(var n = 0; n < repV[l].listeVoiture[i].listeDepot.length;n++){  
+              repV[l].listeVoiture[i].listeDepot[n]['voiture'] = repV[l].listeVoiture[i] 
+              this.voitureService.listeDeposition.push(repV[l].listeVoiture[i].listeDepot[n]);
+             }
           }
         }
       } else {

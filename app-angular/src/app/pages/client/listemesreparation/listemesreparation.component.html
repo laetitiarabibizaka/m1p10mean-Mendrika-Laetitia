@@ -62,7 +62,7 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let depot of voitureService.listeDeposition">
-                                            <td style="display:flex;justify-content:center"><a [routerLink]="['/fiche/']"><i class="fas fa fa-eye"></i></a></td>
+                                            <td style="display:flex;justify-content:center"><a [routerLink]="['/fichereparation',depot.commentaire, depot.date,depot.voiture.numero]"><i class="fas fa fa-eye"></i></a></td>
                                             <td>{{depot.date |date:"MM/dd/yyyy 'at' h:mma"}}</td>
                                             <td>{{depot.dateSortie |date:"MM/dd/yyyy 'at' h:mma"}}</td>
                                             <td>{{depot.commentaire}}</td> 

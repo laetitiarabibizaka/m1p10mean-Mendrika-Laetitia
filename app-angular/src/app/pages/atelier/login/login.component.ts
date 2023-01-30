@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 export class LoginComponent {
   hideLoader: boolean = true;
   hide: boolean = true;
-  email: string = 'randrialita@gmail.com';
+  email: string = 'admin@gmail.com';
   password: string = 'mdp123';
   type: string = '1';
   error: string = '';
