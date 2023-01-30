@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment.prod';
 import { ReparationVoiture } from 'src/app/shared/reparationvoiture/reparation-voiture.model';
 import { Voiture } from 'src/app/shared/voiture/voiture.model';
 import { Deposition } from 'src/app/shared/deposition/deposition.model';
+import { ReparationModel } from 'src/app/shared/reparation/reparation.model';
+import { Facture } from 'src/app/shared/facture/facture.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,8 @@ export class VoitureService {
   reparationVoitures: ReparationVoiture[] = [];
   public listeVoitures: Voiture[] = [];
   public listeDeposition : Deposition[] = [];
+  public listeReparation : ReparationModel[] = [];
+  public listeFacture : Facture[] = [];
 
   constructor(
 		private http: HttpClient
@@ -50,7 +54,7 @@ export class VoitureService {
       dateDepot: dateDepot
     }
     console.log("dataaa ",data)
-    return this.http.put(`${environment.baseUrl}admin/ajoutReparation`,data);
+    return this.http.put(`${environment.baseUrl}admin/receptionDepot`,data);
   }
 
   ajouterReparation(numero: string,dateDepot: Date,desce: string,pu: Number,qte: Number){
@@ -73,8 +77,14 @@ export class VoitureService {
     }
     return this.http.put(`${environment.baseUrl}admin/terminerReparation`,data);
   }
-
-  changerEtatDeposition(numero: string, dateDepot: string,etat: Number){
+  recuperationVoiture(numero: string,dateDepot: Date){
+    var data: any = {
+      numero: numero,
+      dateDepot: dateDepot
+    }
+    return this.http.put(`${environment.baseUrl}admin/recupererVoiture`,data);
+  }
+  changerEtatDeposition(numero: string, dateDepot: Date,etat: Number){
     var data: any = {
       numero: numero,
       dateDepot: dateDepot,
@@ -86,5 +96,31 @@ export class VoitureService {
   envoyerEmail(login: string){
     return this.http.post(`${environment.baseUrl}admin/envoieMail`,{login: login});
   } 
-  
+
+  cloturerDepot(numero: string, dateDepot: Date){
+    var data: any = {
+      numero: numero,
+      dateDepot: dateDepot
+    }
+    return this.http.put(`${environment.baseUrl}admin/cloturerDepot`,data);
+  }
+
+  genererFacture(numero: string, dateDepot: Date,user: string,montant: Number){
+    var data: any = {
+      numero : numero,
+      dateDepot: dateDepot,
+      login: user,
+      montant: montant
+    }
+    return this.http.put(`${environment.baseUrl}admin/genererFacture`,data);
+
+  }
+
+  payerFacture(numero: string, dateDepot: Date){
+    var data: any = {
+      numero : numero,
+      dateDepot: dateDepot
+    }
+    return this.http.put(`${environment.baseUrl}admin/payerFacture`,data);
+  }
 }

@@ -27,7 +27,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!--navbar-->
-        <app-navbar-atelier></app-navbar-atelier>
+        <app-navbar-finance></app-navbar-finance>
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">         
             <!-- Main Content -->
@@ -50,7 +50,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th style="width: 100px;">status</th>
+                                            <th style="width: 100px;"></th>
                                             <th>Voiture</th>
                                             <th>Commentaire</th>
                                             <th>Mecanicien</th>
@@ -63,7 +63,7 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let depot of voitureService.listeDeposition">
-                                            <td style="display:flex;justify-content:center"><a [routerLink]="['/atelier/fichereparation',depot.commentaire, depot.date,depot.voiture.numero]">reparer</a></td>
+                                            <td style="display:flex;justify-content:center"><a [routerLink]="['/finance/finance-fiche',depot.commentaire, depot.date,depot.voiture.numero]"><i class="fas fa fa-eye"></i></a></td>
                                             <td>{{depot.voiture.numero}}</td>  
                                             <td>{{depot.commentaire}}</td>  
                                             <td>{{depot.respAtelier}}</td>  

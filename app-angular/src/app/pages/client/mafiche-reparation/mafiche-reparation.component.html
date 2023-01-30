@@ -48,13 +48,13 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!--navbar-->
-        <app-navbar-atelier></app-navbar-atelier>
+        <app-navbar-client></app-navbar-client>
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">         
             <!-- Main Content -->
             <div id="content">
                  <!--menubar-->
-                <app-menubar-atelier></app-menubar-atelier>
+                <app-menubar></app-menubar>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -96,7 +96,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="label">
-                                           Pobleme :
+                                           Probleme :
                                         </div>
                                         <div class="value">
                                             {{ deposition.commentaire }}
@@ -104,6 +104,7 @@
                                     </div>
                                     
                                 </div>
+                                <hr>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="label">
@@ -116,45 +117,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12" style="margin:20px;display: flex;justify-content: left;">                   
-                                <button (click)="assignerReparation()" class="btn btn-primary" *ngIf="deposition.etat===1">Receptionner</button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-12">
-
-                        <div class="card">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">reparation</h6>
-                            </div>
-                           
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="label">
-                                            <input type="text" class="form-control"  [(ngModel)]="desce" [ngModelOptions]="{standalone:true}" name="desce" placeholder="Piéce">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="label" style="width: 150px;">
-                                            <input type="number" class="form-control"  [(ngModel)]="qt" [ngModelOptions]="{standalone:true}" name="quantie" placeholder="Quantité">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="label" style="width: 150px;">
-                                            <input type="number" class="form-control"  [(ngModel)]="pu" [ngModelOptions]="{standalone:true}" name="prix" placeholder="Prix">
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-4" style="float: right;">                   
-                                            <button class="btn btn-danger" (click)="ajouterReparation()" name="prix">Ajouter Reparation</button>
-                                    </div>
-                                    
-                                </div>
+                                <button (click)="recuperation()" class="btn btn-primary" *ngIf="deposition.etat===3">Recupérer</button>
                             </div>
                         </div>
 
@@ -170,9 +133,9 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th style="width: 100px;">Pièce</th>
+                                            <th style="width: 200px;">Pièce</th>
                                             <th>Quantité</th>
-                                            <th>Prix</th>
+                                            <th>Prix Unitaire</th>
                                             <th>Prix Total</th>
                                             <th>Etat</th>                                    
                                         </tr>
@@ -187,17 +150,20 @@
                                             <th>{{reparation.pu}}</th>
                                             <th>{{reparation.montant}}</th>
                                             <th>{{getStatusRep(reparation.etat)}}</th>
-                                            <th><button class="btn btn-secondary" *ngIf="reparation.etat===1" (click)="terminerReparation(reparation.desce)">Termnier</button></th>
+                                        </tr>
+                                    </tbody>
+                                    <tbody>
+                                        <tr >
+                                            <th></th>
+                                            <th></th>
+                                            <th>Total</th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="row">
-                                    <div class="" style="float: right;margin-right: 20px;">                   
-                                            <button class="btn btn-primary" (click)="cloturerDeposition()">Cloturer la réparation</button>
-                                    </div>
-                                    <div class="">                   
-                                        <button class="btn btn-secondary" (click)="genererFacture()">Facturer</button>
-                                </div>
+                                    
                                 </div>
                             </div>
                             

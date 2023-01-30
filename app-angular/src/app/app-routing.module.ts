@@ -11,10 +11,16 @@ import { ClientComponent } from './pages/client/client.component';
 import { FichevoitureComponent } from './pages/client/fichevoiture/fichevoiture.component';
 import { ListemesreparationComponent } from './pages/client/listemesreparation/listemesreparation.component';
 import { ListemesvoitureComponent } from './pages/client/listemesvoiture/listemesvoiture.component';
+import { MaficheReparationComponent } from './pages/client/mafiche-reparation/mafiche-reparation.component';
 import { ProfileComponent } from './pages/client/profile/profile.component';
+import { FinanceAcceuilComponent } from './pages/finance/finance-acceuil/finance-acceuil.component';
+import { FinanceFicheComponent } from './pages/finance/finance-fiche/finance-fiche.component';
 import { ListereparationComponent } from './pages/listereparation/listereparation.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { ListeFacturesComponent } from './pages/atelier/listefactures/liste-factures/liste-factures.component';
+import { SaisieDepenseComponent } from './pages/finance/saisie-depense/saisie-depense.component';
+import { ListeDepenseComponent } from './pages/finance/liste-depense/liste-depense.component';
 
 const routes: Routes = [
   { path: '', component: UtilisateurComponent },
@@ -34,6 +40,12 @@ const routes: Routes = [
   { path: 'atelier/reparation', component : ReparationEncoursComponent},
   { path: 'atelier/login', component : LoginComponent},
   { path: 'atelier/fichereparation/:depot/:date/:numero', component : FicheReparationComponent},
+  { path: 'fichereparation/:depot/:date/:numero', component : MaficheReparationComponent},
+  { path: 'atelier/listeFactures', component: ListeFacturesComponent},
+  { path: 'finance/finance-acceuil', component : FinanceAcceuilComponent},
+  { path: 'finance/saisiedepense', component : SaisieDepenseComponent},
+  { path: 'finance/listedepense', component : ListeDepenseComponent},
+  { path: 'finance/finance-fiche/:depot/:date/:numero', component : FinanceFicheComponent},
 
 ];
 

@@ -36,6 +36,14 @@ import { NavbarAtelierComponent } from './components/atelier/navbar-atelier/navb
 import { ReparationEncoursComponent } from './pages/atelier/reparation-encours/reparation-encours.component';
 import { LoginComponent } from './pages/atelier/login/login.component';
 import { FicheReparationComponent } from './pages/atelier/fiche-reparation/fiche-reparation.component';
+import { MenubarAtelierComponent } from './components/atelier/menubar-atelier/menubar-atelier.component';
+import { MaficheReparationComponent } from './pages/client/mafiche-reparation/mafiche-reparation.component';
+import { ListeFacturesComponent } from './pages/atelier/listefactures/liste-factures/liste-factures.component';
+import { FinanceAcceuilComponent } from './pages/finance/finance-acceuil/finance-acceuil.component';
+import { NavbarFinanceComponent } from './components/finance/navbar-finance/navbar-finance.component';
+import { FinanceFicheComponent } from './pages/finance/finance-fiche/finance-fiche.component';
+import { SaisieDepenseComponent } from './pages/finance/saisie-depense/saisie-depense.component';
+import { ListeDepenseComponent } from './pages/finance/liste-depense/liste-depense.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +69,15 @@ import { FicheReparationComponent } from './pages/atelier/fiche-reparation/fiche
     NavbarAtelierComponent,
     ReparationEncoursComponent,
     LoginComponent,
-    FicheReparationComponent
+    FicheReparationComponent,
+    MenubarAtelierComponent,
+    MaficheReparationComponent,
+    ListeFacturesComponent,
+    FinanceAcceuilComponent,
+    NavbarFinanceComponent,
+    FinanceFicheComponent,
+    SaisieDepenseComponent,
+    ListeDepenseComponent
   ],
   imports: [
     BrowserModule,

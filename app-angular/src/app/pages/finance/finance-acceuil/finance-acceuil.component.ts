@@ -4,19 +4,17 @@ import { VoitureService } from 'src/app/services/voiture/voiture.service';
 import { ReparationVoiture } from 'src/app/shared/reparationvoiture/reparation-voiture.model';
 
 @Component({
-  selector: 'app-listemesreparation',
-  templateUrl: './listemesreparation.component.html',
-  styleUrls: ['./listemesreparation.component.scss']
+  selector: 'app-finance-acceuil',
+  templateUrl: './finance-acceuil.component.html',
+  styleUrls: ['./finance-acceuil.component.scss']
 })
-export class ListemesreparationComponent {
+export class FinanceAcceuilComponent {
   constructor(
     private router: Router,
     public voitureService: VoitureService
   ) {
-    if(this.voitureService.listeDeposition!=null){
-      this.getreparation()
-    }
-    }
+    this.getreparation()
+  }
 
   ngOnInit(){
 
@@ -24,10 +22,12 @@ export class ListemesreparationComponent {
   getreparation(){
     var user = JSON.parse(sessionStorage.getItem("sessionUser") as any);
     var data=user.login;
-    this.voitureService.getListeVoiture(data).subscribe((res:any)=>{
+    this.voitureService.getListeVoitureTotal().subscribe((res:any)=>{
       if(res) { 
         this.voitureService.listeVoitures = [];
         var repV = res['data'] as ReparationVoiture[];
+        console.log("data:"+JSON.stringify(repV));
+        console.log("COUCOU ", repV)
         for(var l=0;l<repV.length;l++){
           for(var i = 0; i< repV[l].listeVoiture.length; i++) {
             for(var n = 0; n < repV[l].listeVoiture[i].listeDepot.length;n++){  
@@ -36,15 +36,10 @@ export class ListemesreparationComponent {
              }
           }
         }
+        
       } else {
         //alert("Erreur");
       }
     });
-  }
-
-  getStatus(etat: Number){
-    console.log("SALUUUT");
-      const status = ['Deposé','En cours de réparation','Terminé','Recuperé','Sortie','Facturé'];
-      return status[Number(etat)-1];
   }
 }

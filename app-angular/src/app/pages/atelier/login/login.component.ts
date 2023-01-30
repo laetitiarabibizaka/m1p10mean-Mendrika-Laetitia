@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 export class LoginComponent {
   hideLoader: boolean = true;
   hide: boolean = true;
-  email: string = 'randrialita@gmail.com';
+  email: string = 'admin@gmail.com';
   password: string = 'mdp123';
   type: string = '1';
   error: string = '';
@@ -27,7 +27,12 @@ export class LoginComponent {
         if (data.ok) {
           sessionStorage.removeItem("sessionUser");
           sessionStorage.setItem("sessionUser", JSON.stringify(data.data));
-          window.location.href = `atelier/reparation`;
+          if(this.type == '2'){
+            window.location.href = `finance/finance-acceuil`;
+          }else{
+            window.location.href = `atelier/reparation`;
+          }
+          
         } else {
           this.hideLoader = true;
           this.error = data.error;

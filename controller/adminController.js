@@ -7,6 +7,7 @@ var router=express.Router();
 var ObjectID = require('mongoose').Types.ObjectId;
 
 var {Admin} = require('../models/Admin');
+var {Depense} = require('../models/Depense');
 var {ReparationVoiture} = require('../models/ReparationVoiture');
 var {Utilisateur} = require('../models/Utilisateur');
 
@@ -48,17 +49,17 @@ router.post('/traitementLogin', (req, res) => {
 });
 
 router.put('/ajoutReparation',(req,res)=>{
-    console.log("desce:"+req.body.description);
+    console.log("desce:"+req.body.desce);
     var data=ReparationVoiture.findOneAndUpdate(
         {
             "listeVoiture.numero" : req.body.numero,
-            "listeVoiture.listeDepot.date": new Date(req.body.dateDepot)
+            "listeVoiture.listeDepot.date": req.body.dateDepot
         },
         {
             $push:{
                 "listeVoiture.$[elem].listeDepot.$[elem2].listeRep":{
                     id: new mongoose.Types.ObjectId(),
-                    desce: req.body.description,
+                    desce: req.body.desce,
                     pu: Number(req.body.pu),
                     qte: Number(req.body.qte),
                     montant: Number(req.body.pu)*Number(req.body.qte),
@@ -69,7 +70,7 @@ router.put('/ajoutReparation',(req,res)=>{
         {
             arrayFilters:[
                 {"elem.numero": req.body.numero},
-                {"elem2.date": new Date(req.body.dateDepot)}
+                {"elem2.date": req.body.dateDepot}
             ],
         },function(err,docs){
             if(err){
@@ -87,7 +88,7 @@ router.put('/receptionDepot',(req,res)=>{
     var data=ReparationVoiture.findOneAndUpdate(
         {
             "listeVoiture.numero" : req.body.numero,
-            "listeVoiture.listeDepot.date": new Date(req.body.dateDepot)
+            "listeVoiture.listeDepot.date": req.body.dateDepot
         },
         {
             $set:{
@@ -99,7 +100,7 @@ router.put('/receptionDepot',(req,res)=>{
         {
             arrayFilters:[
                 {"elem.numero": req.body.numero},
-                {"elem2.date": new Date(req.body.dateDepot)}
+                {"elem2.date": req.body.dateDepot}
             ],
         },function(err,docs){
             if(err){
@@ -113,11 +114,69 @@ router.put('/receptionDepot',(req,res)=>{
     );
 });
 
+router.put('/cloturerDepot',(req,res)=>{
+    var data=ReparationVoiture.findOneAndUpdate(
+        {
+            "listeVoiture.numero" : req.body.numero,
+            "listeVoiture.listeDepot.date": req.body.dateDepot
+        },
+        {
+            $set:{
+                "listeVoiture.$[elem].listeDepot.$[elem2].dateSortie": new Date(),
+                "listeVoiture.$[elem].listeDepot.$[elem2].etat": 3
+            },
+        },
+        {
+            arrayFilters:[
+                {"elem.numero": req.body.numero},
+                {"elem2.date": req.body.dateDepot}
+            ],
+        },function(err,docs){
+            if(err){
+                console.log(err);
+                res.status(400).json({statusText: 'Bad request',message: err.message});
+            }else{
+                console.log(docs);
+                res.status(200).json({message: 'Sortie reussie',data: docs});
+            }
+        }
+    );
+});
+
+router.put('/recupererVoiture',(req,res)=>{
+    var data=ReparationVoiture.findOneAndUpdate(
+        {
+            "listeVoiture.numero" : req.body.numero,
+            "listeVoiture.listeDepot.date": req.body.dateDepot
+        },
+        {
+            $set:{
+                "listeVoiture.$[elem].listeDepot.$[elem2].dateRecuperation": new Date(),
+                "listeVoiture.$[elem].listeDepot.$[elem2].etat": 4
+            },
+        },
+        {
+            arrayFilters:[
+                {"elem.numero": req.body.numero},
+                {"elem2.date": req.body.dateDepot}
+            ],
+        },function(err,docs){
+            if(err){
+                console.log(err);
+                res.status(400).json({statusText: 'Bad request',message: err.message});
+            }else{
+                console.log(docs);
+                res.status(200).json({message: 'Recuperation reussie',data: docs});
+            }
+        }
+    );
+});
+
 router.put('/terminerReparation',(req,res)=>{
     var data=ReparationVoiture.findOneAndUpdate(
         {
             "listeVoiture.numero" : req.body.numero,
-            "listeVoiture.listeDepot.date": new Date(req.body.dateDepot),
+            "listeVoiture.listeDepot.date": req.body.dateDepot,
             "listeVoiture.listeDepot.listeRep.desce": req.body.desce
         },
         {
@@ -128,7 +187,7 @@ router.put('/terminerReparation',(req,res)=>{
         {
             arrayFilters:[
                 {"elem.numero": req.body.numero},
-                {"elem2.date": new Date(req.body.dateDepot)},
+                {"elem2.date": req.body.dateDepot},
                 {"elem3.desce": req.body.desce}
             ],
         },function(err,docs){
@@ -226,5 +285,97 @@ router.get('/voitures/',(req,res)=>{
     });
 });
 
+router.put('/genererFacture',(req,res)=>{
+    var data=ReparationVoiture.findOneAndUpdate(
+        {
+            "listeVoiture.numero" : req.body.numero,
+            "listeVoiture.listeDepot.date": req.body.dateDepot,
+        },
+        {
+            $set:{
+                "listeVoiture.$[elem].listeDepot.$[elem2].facture":{
+                    id: new mongoose.Types.ObjectId(),
+                    date: new Date(),
+                    montant: Number(req.body.montant),
+                    respFinance: req.body.login,
+                    etat: 1
+                },
+                "listeVoiture.$[elem].listeDepot.$[elem2].etat": 5
+            },
+        },
+        {
+            arrayFilters:[
+                {"elem.numero": req.body.numero},
+                {"elem2.date": req.body.dateDepot},
+            ],
+        },function(err,docs){
+            if(err){
+                console.log(err);
+                res.status(400).json({statusText: 'Bad request',message: err.message});
+            }else{
+                console.log(docs);
+                res.status(200).json({message: 'Facture generée avec succes',data: docs});
+            }
+        }
+    );
+});
 
+router.put('/payerFacture',(req,res)=>{
+    var data=ReparationVoiture.findOneAndUpdate(
+        {
+            "listeVoiture.numero" : req.body.numero,
+            "listeVoiture.listeDepot.date": req.body.dateDepot,
+        },
+        {
+            $set:{
+                "listeVoiture.$[elem].listeDepot.$[elem2].facture.etat": 2
+            },
+        },
+        {
+            arrayFilters:[
+                {"elem.numero": req.body.numero},
+                {"elem2.date": req.body.dateDepot},
+            ],
+        },function(err,docs){
+            if(err){
+                console.log(err);
+                res.status(400).json({statusText: 'Bad request',message: err.message});
+            }else{
+                console.log(docs);
+                res.status(200).json({message: 'Facture payée avec succes',data: docs});
+            }
+        }
+    );
+});
+
+router.post('/saisieDepense',(req,res)=>{
+    var dep=new Depense({
+        desce: req.body.desce,
+        date: req.body.date,
+        montant: req.body.montant,
+        etat: 1
+    });
+
+    dep.save().then(()=>{
+        res.status(200).json({message: "Dépense créé avec succes", data: dep})
+    })
+    .catch((error)=>{
+        let errMsg=error.message;
+        if(error.code=11000){
+            errMsg='erreur lors de l`insertion';
+        }
+        res.status(400).json({statusText: 'Bad request',message: errMsg});
+    })
+});
+
+router.get('/listedepense/',(req,res)=>{
+    Depense.find({}, function(err,docs){
+        if(err){
+            console.log(err);
+            res.status(400).json({message: err.message,error: err.message})
+        }else{
+            res.status(200).json({data: docs})
+        }
+    });
+});
 module.exports = router;
